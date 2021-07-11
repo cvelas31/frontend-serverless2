@@ -1,26 +1,33 @@
 import { createStore } from 'vuex'
 
-export default createStore({
-  state: {
-    /* User */
-    userName: null,
-    userEmail: null,
-    userAvatar: null,
+const store = createStore({
+  state() {
+    return {
+      /* Auth */
+      isLoggedIn: false,
+      organization_id: null,
+      token: null,
 
-    /* FormScreen - fullscreen form layout (e.g. login page) */
-    isFormScreen: false,
+      /* User */
+      userName: null,
+      userEmail: null,
+      userAvatar: null,
 
-    /* Aside */
-    isAsideMobileExpanded: false
+      /* FormScreen - fullscreen form layout (e.g. login page) */
+      isFormScreen: false,
+
+      /* Aside */
+      isAsideMobileExpanded: false
+    }
   },
   mutations: {
     /* A fit-them-all commit */
-    basic (state, payload) {
+    basic(state, payload) {
       state[payload.key] = payload.value
     },
 
     /* User */
-    user (state, payload) {
+    user(state, payload) {
       if (payload.name) {
         state.userName = payload.name
       }
@@ -33,7 +40,7 @@ export default createStore({
     }
   },
   actions: {
-    asideMobileToggle ({ commit, state }, payload = null) {
+    asideMobileToggle({ commit, state }, payload = null) {
       const isShow = payload !== null ? payload : !state.isAsideMobileExpanded
 
       document.getElementById('app').classList[isShow ? 'add' : 'remove']('ml-60')
@@ -45,7 +52,7 @@ export default createStore({
         value: isShow
       })
     },
-    formScreenToggle ({ commit, state }, payload) {
+    formScreenToggle({ commit, state }, payload) {
       commit('basic', {
         key: 'isFormScreen',
         value: payload
@@ -57,3 +64,5 @@ export default createStore({
   modules: {
   }
 })
+
+export default store

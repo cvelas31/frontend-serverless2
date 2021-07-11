@@ -38,7 +38,7 @@ export default {
     modelValue: [String, Number, Boolean]
   },
   emits: ['update:modelValue', 'cancel', 'confirm'],
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     const value = computed({
       get: () => props.modelValue,
       set: value => emit('update:modelValue', value)

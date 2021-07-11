@@ -56,7 +56,7 @@ export default {
     }
   },
   emits: ['header-icon-click'],
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     const headerIconClick = () => {
       emit('header-icon-click')
     }

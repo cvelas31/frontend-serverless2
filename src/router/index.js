@@ -1,12 +1,14 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home'
+import store from '../store/index'
 
 const routes = [
   {
     // Document title tag
     // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
     meta: {
-      title: 'Dashboard'
+      title: 'Dashboard',
+      middleware: 'auth'
     },
     path: '/',
     name: 'home',
@@ -14,7 +16,8 @@ const routes = [
   },
   {
     meta: {
-      title: 'Tables'
+      title: 'Tables',
+      middleware: 'auth'
     },
     path: '/tables',
     name: 'tables',
@@ -25,7 +28,8 @@ const routes = [
   },
   {
     meta: {
-      title: 'Forms'
+      title: 'Forms',
+      middleware: 'auth'
     },
     path: '/forms',
     name: 'forms',
@@ -33,7 +37,8 @@ const routes = [
   },
   {
     meta: {
-      title: 'Profile'
+      title: 'Profile',
+      middleware: 'auth'
     },
     path: '/profile',
     name: 'profile',
@@ -50,10 +55,23 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     return savedPosition || { x: 0, y: 0 }
+  }
+})
+
+router.beforeEach((to, _, next) => {
+  if (to.meta.middleware) {
+    const middleware = require(`../middleware/${to.meta.middleware}`)
+    if (middleware) {
+      middleware.default(next, store)
+    } else {
+      next()
+    }
+  } else {
+    next()
   }
 })
 

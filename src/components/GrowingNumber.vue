@@ -26,7 +26,7 @@ export default {
       default: 500
     }
   },
-  setup (props) {
+  setup(props) {
     const newValue = ref(0)
 
     const newValueFormatted = computed(

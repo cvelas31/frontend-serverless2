@@ -35,7 +35,7 @@ export default {
       type: String
     }
   },
-  setup (props) {
+  setup(props) {
     const is = computed(() => {
       return props.upload ? 'label' : 'div'
     })

@@ -109,7 +109,7 @@ export default {
     NavBarMenuDivider,
     Icon
   },
-  setup () {
+  setup() {
     const store = useStore()
 
     const isNavBarVisible = computed(() => !store.state.isFormScreen)

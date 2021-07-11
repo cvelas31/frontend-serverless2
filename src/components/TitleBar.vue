@@ -37,7 +37,7 @@ export default {
       default: () => []
     }
   },
-  setup () {
+  setup() {
     const prevent = () => {
       alert('Coming soon')
     }

@@ -31,7 +31,7 @@ export default {
       default: false
     }
   },
-  setup () {
+  setup() {
     const isDropdownActive = ref(false)
 
     const toggleDropdownIcon = computed(() => isDropdownActive.value ? mdiChevronUp : mdiChevronDown)

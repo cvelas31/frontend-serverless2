@@ -27,7 +27,7 @@ export default {
       default: 16
     }
   },
-  setup (props) {
+  setup(props) {
     const spanClass = computed(() => {
       return `inline-flex justify-center items-center ${props.w} ${props.h}`
     })

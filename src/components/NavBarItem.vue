@@ -31,7 +31,7 @@ export default {
       default: false
     }
   },
-  setup (props) {
+  setup(props) {
     const is = computed(() => {
       if (props.href) {
         return 'a'

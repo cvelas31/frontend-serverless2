@@ -134,7 +134,7 @@ export default {
     Control,
     FilePicker
   },
-  setup () {
+  setup() {
     const store = useStore()
 
     const titleStack = ref(['Admin', 'Profile'])

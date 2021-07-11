@@ -144,7 +144,7 @@ export default {
     Field,
     Control
   },
-  setup () {
+  setup() {
     const titleStack = ref(['Admin', 'Forms'])
 
     const form = reactive({

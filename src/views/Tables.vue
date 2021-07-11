@@ -53,7 +53,7 @@ export default {
     ClientsTable,
     Notification
   },
-  setup () {
+  setup() {
     const titleStack = ref(['Admin', 'Tables'])
 
     return {

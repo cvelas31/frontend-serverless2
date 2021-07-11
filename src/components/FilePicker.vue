@@ -37,7 +37,7 @@ export default {
     }
   },
   emits: ['update:modelValue'],
-  setup (props) {
+  setup(props) {
     const file = ref(props.modelValue)
 
     // const uploadPercent = ref(0)
@@ -47,7 +47,7 @@ export default {
     }
   },
   methods: {
-    upload (event) {
+    upload(event) {
       const value = event.target.files || event.dataTransfer.files
 
       this.file = value[0]
@@ -78,7 +78,7 @@ export default {
     // }
   },
   watch: {
-    modelValue (value) {
+    modelValue(value) {
       this.file = value
 
       if (!value) {

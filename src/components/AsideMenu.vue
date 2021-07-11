@@ -40,7 +40,7 @@ export default {
       default: () => []
     }
   },
-  setup () {
+  setup() {
     const store = useStore()
 
     const isAsideVisible = computed(() => !store.state.isFormScreen)

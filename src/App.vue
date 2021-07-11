@@ -21,7 +21,7 @@ export default {
     AsideMenu,
     NavBar
   },
-  setup () {
+  setup() {
     const store = useStore()
 
     store.commit('user', {

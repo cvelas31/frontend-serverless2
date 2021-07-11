@@ -10,7 +10,7 @@ import { useStore } from 'vuex'
 
 export default {
   name: 'MainSection',
-  setup () {
+  setup() {
     const store = useStore()
 
     const isFormScreen = computed(() => store.state.isFormScreen)

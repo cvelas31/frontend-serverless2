@@ -14,11 +14,11 @@ export default {
       required: false
     }
   },
-  mounted () {
+  mounted() {
     this.renderChart(this.chartData, this.chartOptions)
   },
   watch: {
-    chartData () {
+    chartData() {
       this.state.chartObj.destroy()
       this.renderChart(this.chartData, this.chartOptions)
     }

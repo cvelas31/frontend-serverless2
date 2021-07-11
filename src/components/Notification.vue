@@ -36,7 +36,7 @@ export default {
       required: true
     }
   },
-  setup (props) {
+  setup(props) {
     const isDismissed = ref(false)
 
     const dismiss = () => {

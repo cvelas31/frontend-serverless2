@@ -11,7 +11,7 @@ export default {
     }
   },
   methods: {
-    renderAncestor (elements) {
+    renderAncestor(elements) {
       return h(
         'div',
         { class: 'tile is-ancestor' },
@@ -23,7 +23,7 @@ export default {
       )
     }
   },
-  render () {
+  render() {
     if (this.$slots.default().length <= this.maxPerRow) {
       return this.renderAncestor(this.$slots.default())
     } else {

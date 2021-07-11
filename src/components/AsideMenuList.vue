@@ -29,7 +29,7 @@ export default {
       default: () => []
     }
   },
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     const menuClick = (event, item) => {
       emit('menu-click', event, item)
     }

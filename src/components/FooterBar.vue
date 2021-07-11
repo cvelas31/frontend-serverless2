@@ -32,7 +32,7 @@ import { useStore } from 'vuex'
 
 export default {
   name: 'FooterBar',
-  setup () {
+  setup() {
     const store = useStore()
 
     const year = computed(() => dayjs().year())

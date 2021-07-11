@@ -97,7 +97,7 @@ export default {
     TitleBar,
     Notification
   },
-  setup () {
+  setup() {
     const titleStack = ref(['Admin', 'Dashboard'])
 
     const chartOptions = chartConfig.chartOptions

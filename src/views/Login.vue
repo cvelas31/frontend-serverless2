@@ -1,5 +1,5 @@
 <template>
-  <main-section>
+  <main-section class="text-center">
     <card-component title="Login" :icon="mdiLock" class="w-11/12 md:w-5/12 shadow-2xl rounded-lg">
       <form method="get">
 
@@ -21,7 +21,7 @@
 
         <field grouped>
           <control>
-            <button type="submit" class="button blue">
+            <button class="button blue" @click.prevent="login">
               Login
             </button>
           </control>
@@ -57,7 +57,34 @@ export default {
     Control,
     Divider
   },
-  setup () {
+  methods: {
+    login() {
+      const data = {
+        username: this.form.login,
+        password: this.form.pass
+      }
+      console.log(data)
+      const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        accept: 'application/json'
+      }
+      fetch('http://localhost:8000/api/v1/login/access-token', {
+        method: 'POST',
+        headers: headers,
+        body: new URLSearchParams(data)
+      })
+        .then(function (response) {
+          console.log(response)
+          return response.json()
+        })
+        .then(function (data) {
+          console.log(data)
+        })
+      console.log(data, headers)
+      return 'hola'
+    }
+  },
+  setup() {
     const store = useStore()
 
     store.dispatch('formScreenToggle', true)
@@ -75,7 +102,7 @@ export default {
       mdiLock
     }
   },
-  unmounted () {
+  unmounted() {
     const store = useStore()
 
     store.dispatch('formScreenToggle', false)

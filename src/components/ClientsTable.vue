@@ -96,7 +96,7 @@ export default {
       default: false
     }
   },
-  setup () {
+  setup() {
     const isModalActive = ref(false)
 
     const isLoading = ref(false)

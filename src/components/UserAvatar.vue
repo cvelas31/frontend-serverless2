@@ -16,7 +16,7 @@ export default {
       default: null
     }
   },
-  setup (props) {
+  setup(props) {
     const store = useStore()
 
     const newUserAvatar = computed(() => {

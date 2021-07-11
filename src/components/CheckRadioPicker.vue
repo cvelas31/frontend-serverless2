@@ -46,7 +46,7 @@ export default {
     nativeValue: [String, Number, Boolean, Array]
   },
   emits: ['update:modelValue'],
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     const computedValue = computed({
       get: () => props.modelValue,
       set: value => {

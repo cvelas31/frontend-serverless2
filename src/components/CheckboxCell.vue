@@ -18,7 +18,7 @@ export default {
       default: 'td'
     }
   },
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     const checked = ref(false)
 
     watch(checked, newVal => {

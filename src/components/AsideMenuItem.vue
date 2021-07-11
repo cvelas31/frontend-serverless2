@@ -44,7 +44,7 @@ export default {
       default: false
     }
   },
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     const isDropdownActive = ref(false)
 
     const componentIs = computed(() => props.item.to ? 'router-link' : 'a')
