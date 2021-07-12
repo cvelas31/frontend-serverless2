@@ -5,13 +5,15 @@ const store = createStore({
     return {
       /* Auth */
       isLoggedIn: false,
-      organization_id: null,
-      token: null,
+      access_token: null,
+      token_type: null,
 
       /* User */
       userName: null,
       userEmail: null,
       userAvatar: null,
+      organization_id: null,
+      organization_name: null,
 
       /* FormScreen - fullscreen form layout (e.g. login page) */
       isFormScreen: false,
@@ -27,16 +29,10 @@ const store = createStore({
     },
 
     /* User */
-    user(state, payload) {
-      if (payload.name) {
-        state.userName = payload.name
-      }
-      if (payload.email) {
-        state.userEmail = payload.email
-      }
-      if (payload.avatar) {
-        state.userAvatar = payload.avatar
-      }
+    userLogged(state, payload) {
+      state.access_token = payload.access_token
+      state.token_type = payload.token_type
+      state.isLoggedIn = true
     }
   },
   actions: {

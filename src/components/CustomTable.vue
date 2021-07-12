@@ -5,50 +5,65 @@
   </modal-box>
 
   <div v-if="checkedRows.length" class="bg-gray-50 p-3">
-    <span v-for="checkedRow in checkedRows" :key="checkedRow.id" class="inline-block bg-gray-100 px-2 py-1 rounded-sm mr-2 text-sm">{{ checkedRow.name }}</span>
+    <span
+      v-for="checkedRow in checkedRows"
+      :key="checkedRow.id"
+      class="inline-block bg-gray-100 px-2 py-1 rounded-sm mr-2 text-sm"
+      >{{ checkedRow.name }}</span
+    >
   </div>
 
   <table>
     <thead>
-    <tr>
-      <th v-if="checkable"></th>
-      <th></th>
-      <th>Name</th>
-      <th>Company</th>
-      <th>City</th>
-      <th>Progress</th>
-      <th>Created</th>
-      <th></th>
-    </tr>
+      <tr>
+        <th v-if="checkable"></th>
+        <th></th>
+        <th v-for="columnName in columnNames" :key="columnName">{{columnName}}</th>
+        <th>Actualizar</th>
+        <th>Eliminar</th>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
-    <tr v-for="client in itemsPaginated" :key="client.id">
-      <checkbox-cell v-if="checkable" @checked="checked($event, client)"/>
-      <td class="image-cell">
-        <div class="image">
-          <img :src="client.avatar" class="rounded-full">
-        </div>
-      </td>
-      <td data-label="Name">{{ client.name }}</td>
-      <td data-label="Company">{{ client.company }}</td>
-      <td data-label="City">{{ client.city }}</td>
-      <td data-label="Progress" class="progress-cell">
-        <progress max="100" :value="client.progress">{{ client.progress }}</progress>
-      </td>
-      <td data-label="Created">
-        <small class="text-gray-500" :title="client.created">{{ client.created }}</small>
-      </td>
-      <td class="actions-cell">
-        <div class="buttons right nowrap">
-          <button class="button small green" type="button" @click="isModalActive = true">
-            <icon :path="mdiEye" size="12" />
-          </button>
-          <button class="button small red" type="button" @click="isModalActive = true">
-            <icon :path="mdiTrashCan" size="12" />
-          </button>
-        </div>
-      </td>
-    </tr>
+      <tr v-for="client in itemsPaginated" :key="client.id">
+        <checkbox-cell v-if="checkable" @checked="checked($event, client)" />
+        <td class="image-cell">
+          <div class="image">
+            <img :src="client.avatar" class="rounded-full" />
+          </div>
+        </td>
+        <td data-label="Name">{{ client.name }}</td>
+        <td data-label="Company">{{ client.company }}</td>
+        <td data-label="City">{{ client.city }}</td>
+        <td data-label="Progress" class="progress-cell">
+          <progress max="100" :value="client.progress">
+            {{ client.progress }}
+          </progress>
+        </td>
+        <td data-label="Created">
+          <small class="text-gray-500" :title="client.created">{{
+            client.created
+          }}</small>
+        </td>
+        <td class="actions-cell">
+          <div class="buttons right nowrap">
+            <button
+              class="button small green"
+              type="button"
+              @click="isModalActive = true"
+            >
+              <icon :path="mdiEye" size="12" />
+            </button>
+            <button
+              class="button small red"
+              type="button"
+              @click="isModalActive = true"
+            >
+              <icon :path="mdiTrashCan" size="12" />
+            </button>
+          </div>
+        </td>
+      </tr>
     </tbody>
   </table>
   <div class="table-pagination">
@@ -56,11 +71,16 @@
       <div class="level-left">
         <div class="level-item">
           <div class="buttons">
-            <button v-for="page in pagesList"
-                    @click="currentPage = page"
-                    type="button" class="button"
-                    :class="{'active': page===currentPage}"
-                    :key="page">{{ page + 1 }}</button>
+            <button
+              v-for="page in pagesList"
+              @click="currentPage = page"
+              type="button"
+              class="button"
+              :class="{ active: page === currentPage }"
+              :key="page"
+            >
+              {{ page + 1 }}
+            </button>
           </div>
         </div>
       </div>
@@ -94,6 +114,9 @@ export default {
     checkable: {
       type: Boolean,
       default: false
+    },
+    columnNames: {
+      type: Array
     }
   },
   setup() {
@@ -109,11 +132,17 @@ export default {
 
     const checkedRows = ref([])
 
-    const itemsPaginated = computed(
-      () => slice(items.value, perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
+    const itemsPaginated = computed(() =>
+      slice(
+        items.value,
+        perPage.value * currentPage.value,
+        perPage.value * (currentPage.value + 1)
+      )
     )
 
-    const numPages = computed(() => Math.ceil(items.value.length / perPage.value))
+    const numPages = computed(() =>
+      Math.ceil(items.value.length / perPage.value)
+    )
 
     const currentPageHuman = computed(() => currentPage.value + 1)
 
@@ -141,7 +170,7 @@ export default {
 
     axios
       .get('data-sources/clients.json')
-      .then((r) => {
+      .then(r => {
         isLoading.value = false
         if (r.data && r.data.data) {
           items.value = r.data.data

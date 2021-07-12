@@ -142,18 +142,18 @@ export default {
     const userName = computed({
       get: () => store.state.userName,
       set: value => {
-        store.commit('user', {
-          name: value
-        })
+        // store.commit('user', {
+        //   name: value
+        // })
       }
     })
 
     const userEmail = computed({
       get: () => store.state.userEmail,
       set: value => {
-        store.commit('user', {
-          email: value
-        })
+        // store.commit('user', {
+        //   email: value
+        // })
       }
     })
 

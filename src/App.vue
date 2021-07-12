@@ -8,8 +8,8 @@
 <script>
 // @ is an alias to /src
 import { ref } from 'vue'
-import { useStore } from 'vuex'
-import { mdiDesktopMac, mdiTable, mdiSquareEditOutline, mdiAccountCircle, mdiLock, mdiViewList, mdiCreditCard, mdiHelpCircle, mdiGithub } from '@mdi/js'
+// import { useStore } from 'vuex'
+import { mdiDesktopMac, mdiTable, mdiSquareEditOutline, mdiAccountCircle, mdiLock, mdiViewList, mdiHelpCircle, mdiGithub } from '@mdi/js'
 import NavBar from '@/components/NavBar'
 import AsideMenu from '@/components/AsideMenu'
 import FooterBar from '@/components/FooterBar'
@@ -22,13 +22,7 @@ export default {
     NavBar
   },
   setup() {
-    const store = useStore()
-
-    store.commit('user', {
-      name: 'John Doe',
-      email: 'john@example.com',
-      avatar: 'https://avatars.dicebear.com/v2/gridy/John-Doe.svg'
-    })
+    // const store = useStore()
 
     const menu = ref(
       [
@@ -40,7 +34,7 @@ export default {
             label: 'Dashboard'
           }
         ],
-        'Examples',
+        'Admin',
         [
           {
             to: '/tables',
@@ -77,16 +71,25 @@ export default {
                 label: 'Sub-item Two'
               }
             ]
+          },
+          {
+            label: 'Admin',
+            subLabel: 'Admin',
+            icon: mdiViewList,
+            menu: [
+              {
+                href: '/admin/organization',
+                label: 'Organization'
+              },
+              {
+                href: '#void',
+                label: 'Sub-item Two'
+              }
+            ]
           }
         ],
         'About',
         [
-          {
-            href: 'https://admin-one.justboil.me',
-            label: 'Premium Demo',
-            icon: mdiCreditCard,
-            prevent: true
-          },
           {
             href: 'https://justboil.me/tailwind-admin-templates',
             label: 'About',

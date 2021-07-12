@@ -51,6 +51,14 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login')
+  },
+  {
+    meta: {
+      title: 'Organization'
+    },
+    path: '/admin/organization',
+    name: 'admin-organization',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Organization')
   }
 ]
 

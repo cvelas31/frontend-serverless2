@@ -13,10 +13,6 @@
       <div class="level-right">
         <div class="level-item">
           <div class="buttons is-right">
-            <a href="https://admin-one.justboil.me/" target="_blank" class="button blue" @click.prevent="prevent">
-              <icon :path="mdiCreditCard" class="mr-3" />
-              <span>Premium Demo</span>
-            </a>
           </div>
         </div>
       </div>
@@ -25,12 +21,10 @@
 </template>
 
 <script>
-import Icon from '@/components/Icon'
 import { mdiCreditCard } from '@mdi/js'
 
 export default {
   name: 'TitleBar',
-  components: { Icon },
   props: {
     titleStack: {
       type: Array,

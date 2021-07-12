@@ -1,34 +1,52 @@
 <template>
   <main-section class="text-center">
-    <card-component title="Login" :icon="mdiLock" class="w-11/12 md:w-5/12 shadow-2xl rounded-lg">
+    <card-component
+      title="Login"
+      :icon="mdiLock"
+      class="w-11/12 md:w-5/12 shadow-2xl rounded-lg"
+    >
       <form method="get">
-
         <field label="Login" help="Please enter your login" spaced>
           <control :icon-left="mdiAccount">
-            <input v-model="form.login" class="input" type="text" name="login" placeholder="user@example.com" autocomplete="username">
+            <input
+              v-model="form.login"
+              class="input"
+              type="text"
+              name="login"
+              placeholder="user@example.com"
+              autocomplete="username"
+            />
           </control>
         </field>
 
         <field label="Password" help="Please enter your password" spaced>
           <control :icon-left="mdiAsterisk">
-            <input v-model="form.pass" class="input" type="password" name="password" placeholder="Password" autocomplete="current-password">
+            <input
+              v-model="form.pass"
+              class="input"
+              type="password"
+              name="password"
+              placeholder="Password"
+              autocomplete="current-password"
+            />
           </control>
         </field>
 
-        <check-radio-picker name="remember" v-model="form.remember" :options="{ remember: 'Remember' }" spaced />
+        <check-radio-picker
+          name="remember"
+          v-model="form.remember"
+          :options="{ remember: 'Remember' }"
+          spaced
+        />
 
         <divider />
 
         <field grouped>
           <control>
-            <button class="button blue" @click.prevent="login">
-              Login
-            </button>
+            <button class="button blue" @click.prevent="login">Login</button>
           </control>
           <control>
-            <router-link to="/" class="button">
-              Back
-            </router-link>
+            <router-link to="/" class="button"> Back </router-link>
           </control>
         </field>
       </form>
@@ -46,6 +64,8 @@ import CheckRadioPicker from '@/components/CheckRadioPicker'
 import Field from '@/components/Field'
 import Control from '@/components/Control'
 import Divider from '@/components/Divider.vue'
+import axios from '../plugins/axios'
+import qs from 'qs'
 
 export default {
   name: 'Login',
@@ -58,30 +78,32 @@ export default {
     Divider
   },
   methods: {
-    login() {
+    async login() {
+      this.isLoading = true
       const data = {
         username: this.form.login,
         password: this.form.pass
       }
-      console.log(data)
       const headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
         accept: 'application/json'
       }
-      fetch('http://localhost:8000/api/v1/login/access-token', {
-        method: 'POST',
-        headers: headers,
-        body: new URLSearchParams(data)
-      })
-        .then(function (response) {
-          console.log(response)
-          return response.json()
+      await axios
+        .post('/login/access-token', qs.stringify(data), {
+          headers: headers
         })
-        .then(function (data) {
-          console.log(data)
+        .then((response) => {
+          this.form.login = ''
+          this.form.pass = ''
+          this.isLoading = false
+          this.$store.commit('userLogged', response.data)
         })
-      console.log(data, headers)
-      return 'hola'
+        .catch(e => {
+          console.log(e)
+          this.isLoading = false
+        })
+      // TODO: Redirect to were it comes from
+      this.$router.push('/')
     }
   },
   setup() {
