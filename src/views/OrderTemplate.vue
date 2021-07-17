@@ -3,7 +3,7 @@
   <hero-bar>
     {{ name.value }}
     <template #right>
-      <router-link to="/" class="button blue"> Crear {{ name }} </router-link>
+      <router-link to="/" class="button blue"> Create {{ name }} </router-link>
     </template>
   </hero-bar>
   <main-section>
@@ -40,7 +40,7 @@ export default {
     CustomTable
   },
   setup() {
-    const name = ref('Organizacion')
+    const name = ref('Organizations')
     const titleStack = ref(['Admin', name.value])
     const columnNames = ref(['ID', 'Nombre', 'Subdomain'])
     const columnNamesAttributes = ref(['id', 'name', 'subdomain'])

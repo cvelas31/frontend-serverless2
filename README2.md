@@ -17,6 +17,9 @@
 - Headers
 - Warning with data handling with JavaScript.
 
+# Resources
+- Subdomain on Vue
+  - https://medium.com/@apalshah/vue-js-how-to-handle-multiple-subdomains-on-a-single-app-cba9b1f916c4
 
 
 

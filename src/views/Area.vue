@@ -3,7 +3,7 @@
   <hero-bar>
     {{ name.value }}
     <template #right>
-      <router-link to="/" class="button blue"> Crear {{ name }} </router-link>
+      <router-link to="/" class="button blue"> Create {{ name }} </router-link>
     </template>
   </hero-bar>
   <main-section>
@@ -40,28 +40,45 @@ export default {
     CustomTable
   },
   setup() {
-    const name = ref('Organizacion')
+    const name = ref('Areas')
     const titleStack = ref(['Admin', name.value])
-    const columnNames = ref(['ID', 'Nombre', 'Subdomain'])
-    const columnNamesAttributes = ref(['id', 'name', 'subdomain'])
+    const columnNames = ref(['ID', 'Nombre'])
+    const columnNamesAttributes = ref(['id', 'name'])
     const organizations = ref([
       {
-        name: '__ALL__',
-        admin_user_id: null,
-        subdomain: '',
-        id: 1
+        name: 'Admin',
+        organization_id: 2,
+        id: 1,
+        parent_area_id: null,
+        children_areas: []
       },
       {
-        name: 'FARMAPLAST',
-        admin_user_id: null,
-        subdomain: 'farmaplast',
-        id: 2
+        name: 'Taller',
+        organization_id: 2,
+        id: 2,
+        parent_area_id: null,
+        children_areas: []
       },
       {
-        name: 'EXPORTADORA',
-        admin_user_id: null,
-        subdomain: 'exportadora',
-        id: 3
+        name: 'Mantenimiento',
+        organization_id: 2,
+        id: 3,
+        parent_area_id: null,
+        children_areas: []
+      },
+      {
+        name: 'Produccion',
+        organization_id: 2,
+        id: 4,
+        parent_area_id: null,
+        children_areas: []
+      },
+      {
+        name: 'Admin',
+        organization_id: 3,
+        id: 5,
+        parent_area_id: null,
+        children_areas: []
       }
     ])
 

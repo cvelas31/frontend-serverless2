@@ -59,6 +59,30 @@ const routes = [
     path: '/admin/organization',
     name: 'admin-organization',
     component: () => import(/* webpackChunkName: "login" */ '../views/Organization')
+  },
+  {
+    meta: {
+      title: 'Area'
+    },
+    path: '/admin/area',
+    name: 'admin-area',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Area')
+  },
+  {
+    meta: {
+      title: 'User'
+    },
+    path: '/admin/user',
+    name: 'admin-user',
+    component: () => import(/* webpackChunkName: "login" */ '../views/User')
+  },
+  {
+    meta: {
+      title: 'OrderTemplate'
+    },
+    path: '/admin/order_template',
+    name: 'admin-order-template',
+    component: () => import(/* webpackChunkName: "login" */ '../views/OrderTemplate')
   }
 ]
 

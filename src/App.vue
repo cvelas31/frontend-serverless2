@@ -79,11 +79,19 @@ export default {
             menu: [
               {
                 href: '/admin/organization',
-                label: 'Organization'
+                label: 'Organizacion'
               },
               {
-                href: '#void',
-                label: 'Sub-item Two'
+                href: '/admin/area',
+                label: 'Areas'
+              },
+              {
+                href: '/admin/user',
+                label: 'Usuarios'
+              },
+              {
+                href: '/admin/order_template',
+                label: 'Plantillas de Ordenes'
               }
             ]
           }

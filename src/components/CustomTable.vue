@@ -16,50 +16,46 @@
   <table>
     <thead>
       <tr>
-        <th v-if="checkable"></th>
         <th></th>
-        <th v-for="columnName in columnNames" :key="columnName">{{columnName}}</th>
+        <th v-if="checkable"></th>
+        <th v-for="columnName in columnNames" :key="columnName">
+          {{ columnName }}
+        </th>
         <th>Actualizar</th>
         <th>Eliminar</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="client in itemsPaginated" :key="client.id">
-        <checkbox-cell v-if="checkable" @checked="checked($event, client)" />
-        <td class="image-cell">
-          <div class="image">
-            <img :src="client.avatar" class="rounded-full" />
+      <tr v-for="tableElement in tableElements" :key="tableElement.id">
+        <td></td>
+        <checkbox-cell v-if="checkable" @checked="checked($event, tableElement)" />
+        <td
+          v-for="(columnName, index) in columnNames"
+          :data-label="columnName"
+          :key="columnName"
+        >
+          {{ tableElement[columnNamesAttributes[index]] }}
+        </td>
+        <td class="actions-cell" data-label="Actualizar">
+          <div class="buttons nowrap">
+            <button
+              class="button green"
+              type="button"
+              @click="isModalActive = true"
+            >
+              <icon :path="mdiEye" size="15" />
+            </button>
           </div>
         </td>
-        <td data-label="Name">{{ client.name }}</td>
-        <td data-label="Company">{{ client.company }}</td>
-        <td data-label="City">{{ client.city }}</td>
-        <td data-label="Progress" class="progress-cell">
-          <progress max="100" :value="client.progress">
-            {{ client.progress }}
-          </progress>
-        </td>
-        <td data-label="Created">
-          <small class="text-gray-500" :title="client.created">{{
-            client.created
-          }}</small>
-        </td>
-        <td class="actions-cell">
-          <div class="buttons right nowrap">
+        <td class="actions-cell" data-label="Eliminar">
+          <div class="buttons nowrap">
             <button
-              class="button small green"
+              class="button red"
               type="button"
               @click="isModalActive = true"
             >
-              <icon :path="mdiEye" size="12" />
-            </button>
-            <button
-              class="button small red"
-              type="button"
-              @click="isModalActive = true"
-            >
-              <icon :path="mdiTrashCan" size="12" />
+              <icon :path="mdiTrashCan" size="15" />
             </button>
           </div>
         </td>
@@ -117,6 +113,12 @@ export default {
     },
     columnNames: {
       type: Array
+    },
+    columnNamesAttributes: {
+      type: Array
+    },
+    tableElements: {
+      type: Array
     }
   },
   setup() {
@@ -164,6 +166,10 @@ export default {
       }
     }
 
+    const currentValue = (element, index, columnNamesAttributes) => {
+      const attibute = columnNamesAttributes[index]
+      return element.getAttibute(attibute)
+    }
     // Fetch sample data
 
     isLoading.value = true
@@ -192,7 +198,8 @@ export default {
       pagesList,
       checked,
       mdiEye,
-      mdiTrashCan
+      mdiTrashCan,
+      currentValue
     }
   }
 }
