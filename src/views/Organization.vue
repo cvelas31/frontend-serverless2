@@ -3,7 +3,7 @@
   <hero-bar>
     {{ name.value }}
     <template #right>
-      <router-link to="/" class="button blue"> Crear {{ name }} </router-link>
+      <router-link to="/admin/organization/create" class="button blue"> Crear {{ name }} </router-link>
     </template>
   </hero-bar>
   <main-section>
