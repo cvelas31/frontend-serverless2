@@ -27,7 +27,8 @@
 - **Form from Open Json Schema**
   - [Generate form using Json Schemas](https://vuejsfeed.com/blog/generate-forms-using-json-schema-and-vue-js)
   - [FormsSchema Generator](https://bestofvue.com/repo/formschema-native-vuejs-form-generator)
-
+- **Create form
+  - formvuelate
 
 - `npm config set ignore-scripts false`
 - `npm ext .js,.vue srcbin/eslint --fix . --e`
