@@ -1,0 +1,76 @@
+{
+    name: {
+      title:
+      component: FormText,
+      label: 'name'
+    },
+    lastName: {
+      component: FormText,
+      label: 'last_name'
+    }
+}
+
+{
+    "title": "OrganizationCreate",
+    "type": "object",
+    "properties": {
+        "name": {
+            "title": "Name",
+            "type": "string"
+        },
+        "admin_user_id": {
+            "title": "Admin User Id",
+            "type": "integer"
+        },
+        "subdomain": {
+            "title": "Subdomain",
+            "type": "string"
+        }
+    },
+    "required": [
+        "name",
+        "subdomain"
+    ]
+}
+
+
+
+< v-for >
+< v-if >
+< v-elif text field >  <p v-if blabla = check numbers> <> 
+< v-elif > 
+< v-elif > 
+< v-elif > 
+< v-elif > 
+< v-elif > 
+< v-elif > 
+
+ 
+
+{
+    name: {
+        title - > 'label'
+        component if string use "formtext" if int use "" if enum use "drop down" if date use "Formcalendar"
+    },
+    lastName: {
+        title - > 'label'
+        component if string use "formtext" if int use "" if enum use "drop down" if date use "Formcalendar"
+    }
+}
+
+
+
+
+{
+    name: {
+      component: FormText,
+      label: 'name'
+    },
+    lastName: {
+      component: FormText,
+      label: 'last_name'
+    }
+  }
+
+
+for property in properties

@@ -83,6 +83,14 @@ const routes = [
     path: '/admin/order_template',
     name: 'admin-order-template',
     component: () => import(/* webpackChunkName: "login" */ '../views/OrderTemplate')
+  },
+  {
+    meta: {
+      title: 'CrearOrganizacion'
+    },
+    path: '/admin/organization/create',
+    name: 'admin-organization-create',
+    component: () => import(/* webpackChunkName: "login" */ '../components/Crud/CreateOrganization')
   }
 ]
 

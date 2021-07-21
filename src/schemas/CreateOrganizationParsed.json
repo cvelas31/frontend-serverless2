@@ -1,0 +1,15 @@
+
+{
+    "name": {
+        "component": "FormText",
+        "label": "name",
+        "type": "text",
+        "required": true
+    },
+    "subdomain": {
+        "component": "FormText",
+        "label": "subdomain",
+        "type": "text",
+        "required": true
+    }
+}

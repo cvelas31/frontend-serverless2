@@ -1,0 +1,240 @@
+{
+    "UserCreate": {
+        "title": "UserCreate",
+        "type": "object",
+        "properties": {
+            "name": {
+                "title": "Name",
+                "type": "string"
+            },
+            "last_name": {
+                "title": "Last Name",
+                "type": "string"
+            },
+            "email": {
+                "title": "Email",
+                "type": "string",
+                "format": "email"
+            },
+            "is_active": {
+                "title": "Is Active",
+                "type": "boolean"
+            },
+            "organization_id": {
+                "title": "Organization Id",
+                "type": "integer"
+            },
+            "password": {
+                "title": "Password",
+                "type": "string"
+            },
+            "is_admin": {
+                "title": "Is Admin",
+                "type": "boolean"
+            }
+        },
+        "required": [
+            "name",
+            "last_name",
+            "email",
+            "is_active",
+            "organization_id",
+            "password"
+        ]
+    },
+    "FullOrderCreate": {
+        "title": "FullOrderCreate",
+        "type": "object",
+        "properties": {
+            "status": {
+                "title": "Status",
+                "default": "OPENED",
+                "type": "string"
+            },
+            "closed_time": {
+                "title": "Closed Time",
+                "type": "string"
+            },
+            "name": {
+                "title": "Name",
+                "type": "string"
+            },
+            "created_by_user_id": {
+                "title": "Created By User Id",
+                "type": "integer"
+            },
+            "order_template_id": {
+                "title": "Order Template Id",
+                "type": "integer"
+            },
+            "organization_id": {
+                "title": "Organization Id",
+                "type": "integer"
+            },
+            "order_fields": {
+                "title": "Order Fields",
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/OrderFieldBase"
+                }
+            }
+        },
+        "required": [
+            "order_template_id",
+            "order_fields"
+        ],
+        "definitions": {
+            "OrderFieldBase": {
+                "title": "OrderFieldBase",
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "title": "Value",
+                        "type": "string"
+                    },
+                    "field_id": {
+                        "title": "Field Id",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "value",
+                    "field_id"
+                ]
+            }
+        }
+    },
+    "OrderTemplateCreate": {
+        "title": "OrderTemplateCreate",
+        "type": "object",
+        "properties": {
+            "name": {
+                "title": "Name",
+                "type": "string"
+            },
+            "created_by_user_id": {
+                "title": "Created By User Id",
+                "type": "integer"
+            },
+            "organization_id": {
+                "title": "Organization Id",
+                "type": "integer"
+            }
+        },
+        "required": [
+            "name"
+        ]
+    },
+    "FieldTypeCreate": {
+        "title": "FieldTypeCreate",
+        "type": "object",
+        "properties": {
+            "name": {
+                "title": "Name",
+                "type": "string"
+            },
+            "config": {
+                "title": "Config",
+                "type": "string",
+                "format": "json-string"
+            }
+        },
+        "required": [
+            "name"
+        ]
+    },
+    "OrderTemplateFieldCreate": {
+        "title": "OrderTemplateFieldCreate",
+        "type": "object",
+        "properties": {
+            "name": {
+                "title": "Name",
+                "type": "string"
+            },
+            "required": {
+                "title": "Required",
+                "type": "boolean"
+            },
+            "immutable": {
+                "title": "Immutable",
+                "type": "boolean"
+            },
+            "field_type_id": {
+                "title": "Field Type Id",
+                "type": "integer"
+            },
+            "order_template_id": {
+                "title": "Order Template Id",
+                "type": "integer"
+            },
+            "position": {
+                "title": "Position",
+                "type": "integer"
+            },
+            "properties": {
+                "title": "Properties",
+                "type": "string",
+                "format": "json-string"
+            }
+        },
+        "required": [
+            "name",
+            "required",
+            "immutable",
+            "field_type_id",
+            "order_template_id",
+            "position"
+        ]
+    },
+    "VeryComplexProperties" : {
+        "title": "TextFieldTypeProperties",
+        "type": "object",
+        "properties": {
+            "dashboard": {
+                "title": "Dashboard",
+                "default": true,
+                "type": "boolean"
+            },
+            "singleton": {
+                "title": "Singleton",
+                "default": true,
+                "type": "boolean"
+            },
+            "max_items": {
+                "title": "Max Items",
+                "maximum": 100,
+                "type": "integer"
+            },
+            "value_type": {
+                "default": "STRING",
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/EnumValueType"
+                    }
+                ]
+            },
+            "max_length": {
+                "title": "Max Length",
+                "minimum": 0.0,
+                "maximum": 1000.0,
+                "type": "integer"
+            }
+        },
+        "required": [
+            "max_length"
+        ],
+        "definitions": {
+            "EnumValueType": {
+                "title": "EnumValueType",
+                "description": "An enumeration.",
+                "enum": [
+                    "STRING",
+                    "INTEGER",
+                    "FLOAT",
+                    "URL"
+                ],
+                "type": "string"
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "title": "OrganizationCreate",
+    "type": "object",
+    "properties": {
+        "name": {
+            "title": "Name",
+            "type": "string"
+        },
+        "admin_user_id": {
+            "title": "Admin User Id",
+            "type": "integer"
+        },
+        "subdomain": {
+            "title": "Subdomain",
+            "type": "string"
+        }
+    },
+    "required": [
+        "name",
+        "subdomain"
+    ]
+}
