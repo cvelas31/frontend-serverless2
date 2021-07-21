@@ -3,7 +3,7 @@
   <hero-bar>
     Crear {{name}}
     <template #right>
-      <router-link @click="$router.go(-1)" class="button light">
+      <router-link to="/" class="button light">
         Dashboard
       </router-link>
     </template>
