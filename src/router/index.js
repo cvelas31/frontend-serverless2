@@ -86,11 +86,11 @@ const routes = [
   },
   {
     meta: {
-      title: 'Create'
+      title: 'CrearOrganizacion'
     },
     path: '/admin/organization/create',
     name: 'admin-organization-create',
-    component: () => import(/* webpackChunkName: "forms" */ '../views/CreateOrganization')
+    component: () => import(/* webpackChunkName: "login" */ '../components/Crud/CreateOrganization')
   }
 ]
 

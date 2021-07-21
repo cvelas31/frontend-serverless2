@@ -1,16 +1,22 @@
 <template>
   <div>
     <label :for="uuid" v-html="labelHtml" />
-    <input
-      :type="type"
+    <select
       :value="modelValue"
       :required="required"
       :id="uuid"
-      :disabled="readOnly"
-      class="input"
       @input="update($event.target.value)"
-    />
-    <p v-show="validation.errorMessage" v-text="validation.errorMessage"></p>
+    >
+      <option v-if="!disableNoSelection">-</option>
+      <option
+        v-for="option in options"
+        :key="option"
+        :value="option"
+        :selected="option === modelValue"
+      >
+        {{ option }}
+      </option>
+    </select>
   </div>
 </template>
 
@@ -22,30 +28,17 @@ export default {
       type: Boolean,
       default: false
     },
-    label: {
-      type: String,
-      required: true
-    },
     config: {
       type: Object,
-      default: () => ({ type: 'text' })
-    },
-    readOnly: {
-      type: Boolean,
-      default: false
+      default: () => {}
     },
     uuid: {
       type: Number,
       default: 0
     },
-    validation: {
-      type: Object,
-      default: () => ({})
-    },
-    type: {
-      type: String,
-      default: 'text'
-    },
+    label: { type: String, required: true },
+    options: { type: Array, required: true },
+    disableNoSelection: { type: Boolean, default: false },
     validations: {
       type: Object,
       default: () => ({})

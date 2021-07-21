@@ -1,29 +1,76 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "type": "object",
-  "title": "Newsletter Subscription",
-  "properties": {
-    "name": {
-      "type": "string",
-      "minLength": 8,
-      "maxLength": 80,
-      "attrs": {
-        "placeholder": "Full Name",
-        "title": "Please enter your full name"
-      }
+    name: {
+      title:
+      component: FormText,
+      label: 'name'
     },
-    "email": {
-      "type": "string",
-      "maxLength": 120,
-      "attrs": {
-        "type": "email",
-        "placeholder": "Email"
-      }
-    },
-    "lists": {
-      "type": "string",
-      "enum": ["Daily New", "Promotion"]
+    lastName: {
+      component: FormText,
+      label: 'last_name'
     }
-  },
-  "required": ["name", "email", "lists"]
 }
+
+{
+    "title": "OrganizationCreate",
+    "type": "object",
+    "properties": {
+        "name": {
+            "title": "Name",
+            "type": "string"
+        },
+        "admin_user_id": {
+            "title": "Admin User Id",
+            "type": "integer"
+        },
+        "subdomain": {
+            "title": "Subdomain",
+            "type": "string"
+        }
+    },
+    "required": [
+        "name",
+        "subdomain"
+    ]
+}
+
+
+
+< v-for >
+< v-if >
+< v-elif text field >  <p v-if blabla = check numbers> <> 
+< v-elif > 
+< v-elif > 
+< v-elif > 
+< v-elif > 
+< v-elif > 
+< v-elif > 
+
+ 
+
+{
+    name: {
+        title - > 'label'
+        component if string use "formtext" if int use "" if enum use "drop down" if date use "Formcalendar"
+    },
+    lastName: {
+        title - > 'label'
+        component if string use "formtext" if int use "" if enum use "drop down" if date use "Formcalendar"
+    }
+}
+
+
+
+
+{
+    name: {
+      component: FormText,
+      label: 'name'
+    },
+    lastName: {
+      component: FormText,
+      label: 'last_name'
+    }
+  }
+
+
+for property in properties

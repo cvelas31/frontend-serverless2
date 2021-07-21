@@ -2,16 +2,21 @@
   <aside
     v-show="isAsideVisible"
     class="w-60 fixed top-0 z-40 h-screen bg-gray-800 transition-all md:left-0"
-    :class="{ '-left-60': !isAsideMobileExpanded, 'left-0': isAsideMobileExpanded }"
+    :class="{
+      '-left-60': !isAsideMobileExpanded,
+      'left-0': isAsideMobileExpanded,
+    }"
   >
     <aside-tools is-main-menu>
-      <template #label>
-        Admin <b class="font-black">One</b>
-      </template>
+      <template #label> Admin <b class="font-black">One</b> </template>
     </aside-tools>
     <div>
       <template v-for="(menuGroup, index) in menu">
-        <p v-if="typeof menuGroup === 'string'" :key="`a-${index}`" class="p-3 text-xs uppercase text-gray-400">
+        <p
+          v-if="typeof menuGroup === 'string'"
+          :key="`a-${index}`"
+          class="p-3 text-xs uppercase text-gray-400"
+        >
           {{ menuGroup }}
         </p>
         <aside-menu-list
@@ -40,12 +45,15 @@ export default {
       default: () => []
     }
   },
+
   setup() {
     const store = useStore()
 
     const isAsideVisible = computed(() => !store.state.isFormScreen)
 
-    const isAsideMobileExpanded = computed(() => store.state.isAsideMobileExpanded)
+    const isAsideMobileExpanded = computed(
+      () => store.state.isAsideMobileExpanded
+    )
 
     const menuClick = (event, item) => {
       if (item.prevent) {

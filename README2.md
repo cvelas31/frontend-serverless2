@@ -34,3 +34,10 @@
 
 - `npm config set ignore-scripts false`
 - `npm ext .js,.vue srcbin/eslint --fix . --e`
+
+## TODOs:
+1. Create parser of jsons from pydantic to formulate.
+    - How to define which component to use for a field
+    - What are the available components? 
+2. In the front end, assume you receive parsed forms and
+make them match with formvuelate.

@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 
 import './css/main.css'
+import FormText from './components/Forms/FormText'
 
 /* Default title tag */
 const defaultDocumentTitle = 'Admin One Vue 3 Tailwind'
@@ -20,4 +21,8 @@ router.afterEach(to => {
   }
 })
 
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App)
+
+app.component('FormText', FormText)
+
+app.use(store).use(router).mount('#app')
