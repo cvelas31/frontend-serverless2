@@ -1,5 +1,4 @@
 # How to do
-
 - Definir componentes (Inputs outputs)
 - Pensar que lo puede usar un celular
   - Llamarla y almacenarla localmente.
@@ -16,6 +15,9 @@
 - Don't repeat yourself!!!!!!!!!!
 - Headers
 - Warning with data handling with JavaScript.
+
+# Set up
+[ESLint + Prettier + Vue +  VSCode](https://technicallyfletch.com/how-to-setup-eslint-and-prettier-with-vscode-and-vuejs/)
 
 # Resources
 - **Subdomain on Vue**
