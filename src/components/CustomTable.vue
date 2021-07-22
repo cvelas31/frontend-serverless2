@@ -1,7 +1,6 @@
 <template>
-  <modal-box v-model="isModalActive" title="Please confirm action">
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
+  <modal-box v-model="isModalActive" title="Por favor confirme la acción" button="red" buttonLabel="Eliminar">
+    <p>Esta seguro que desea eliminar <b>{{ name }} {{ id }}</b></p>
   </modal-box>
 
   <div v-if="checkedRows.length" class="bg-gray-50 p-3">
@@ -29,7 +28,10 @@
     <tbody>
       <tr v-for="tableElement in tableElements" :key="tableElement.id">
         <td></td>
-        <checkbox-cell v-if="checkable" @checked="checked($event, tableElement)" />
+        <checkbox-cell
+          v-if="checkable"
+          @checked="checked($event, tableElement)"
+        />
         <td
           v-for="(columnName, index) in columnNames"
           :data-label="columnName"
@@ -39,13 +41,13 @@
         </td>
         <td class="actions-cell" data-label="Actualizar">
           <div class="buttons nowrap">
-            <button
+            <router-link
               class="button green"
               type="button"
-              @click="isModalActive = true"
+              :to="{name: 'admin-resource-view', params: {resource: resource, resourceId: tableElement.id}}"
             >
               <icon :path="mdiEye" size="15" />
-            </button>
+            </router-link>
           </div>
         </td>
         <td class="actions-cell" data-label="Eliminar">
@@ -119,6 +121,10 @@ export default {
     },
     tableElements: {
       type: Array
+    },
+    resource: {
+      type: String,
+      default: 'organization'
     }
   },
   setup() {

@@ -1,20 +1,23 @@
 <template>
   <title-bar :title-stack="titleStack" />
   <hero-bar>
-    Crear {{name}}
+    {{ UpperString(resource) }}
     <template #right>
-      <router-link to="/" class="button light">
-        Dashboard
-      </router-link>
+      <router-link to="/" class="button light"> Dashboard </router-link>
     </template>
   </hero-bar>
   <main-section>
-    <card-component :title="'Crear ' + name" :icon="mdiBallot">
-  <SchemaForm :schema="schema" >
-            <template v-slot:afterForm>
-          <BaseButton type="submit" class="button green my-2">Submit</BaseButton>
+    <card-component
+      :title="resource.toUpperCase() + ' ' + resourceId"
+      :icon="mdiBallot"
+    >
+      <SchemaForm :schema="schema">
+        <template #afterForm>
+          <BaseButton type="submit" class="button blue my-2"
+            >Edit</BaseButton
+          >
         </template>
-  </SchemaForm>
+      </SchemaForm>
     </card-component>
   </main-section>
 </template>
@@ -45,22 +48,43 @@ export default {
     CardComponent,
     TitleBar
   },
+  props: {
+    resource: {
+      type: String
+    },
+    resourceId: {
+      type: Number
+    }
+  },
   setup() {
-    const name = ref('Organization')
     const schema = ref(CreateOrganizationParsed)
-    const formData = ref({})
+
+    const apiData = {
+      name: 'Farmaplast',
+      subdomain: 'farmaplast'
+    }
+
+    const formData = ref(apiData)
     useSchemaForm(formData)
+
+    const UpperString = string => {
+      // string example -> String Example
+      const arr = string.split(' ')
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
+      }
+      const str2 = arr.join(' ')
+      return str2
+    }
 
     return {
       schema,
       mdiBallot,
-      name
+      UpperString
     }
   }
 }
-
 </script>
 
 <style>
-
 </style>
