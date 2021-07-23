@@ -9,7 +9,7 @@
     </template>
   </hero-bar>
   <main-section>
-    <card-component :title="'Crear ' + resorce" :icon="mdiBallot">
+    <card-component :title="'Crear ' + resource" :icon="mdiBallot">
   <SchemaForm :schema="schema" >
             <template v-slot:afterForm>
           <BaseButton type="submit" class="button green my-2">Submit</BaseButton>
