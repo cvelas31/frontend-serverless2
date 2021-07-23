@@ -23,7 +23,7 @@
 import { ref, markRaw } from 'vue'
 import { useSchemaForm, SchemaFormFactory } from 'formvuelate'
 import FormText from '@/components/Forms/FormText'
-import CreateOrganizationParsed from '@/schemas/CreateOrganizationParsed.json'
+import CreateOrganizationParsed from '@/schemas/CreateOrganizacionParsed.json'
 import BaseButton from '@/components/Forms/BaseButton'
 import { mdiBallot } from '@mdi/js'
 import MainSection from '@/components/MainSection'

@@ -1,6 +1,6 @@
 <template>
   <modal-box v-model="isModalActive" title="Por favor confirme la acción" button="red" buttonLabel="Eliminar">
-    <p>Esta seguro que desea eliminar <b>{{ name }} {{ id }}</b></p>
+    <p>Esta seguro que desea eliminar <b>{{ deleteId }}</b></p>
   </modal-box>
 
   <div v-if="checkedRows.length" class="bg-gray-50 p-3">
@@ -55,7 +55,7 @@
             <button
               class="button red"
               type="button"
-              @click="isModalActive = true"
+              @click="isModalActive = true; deleteId=tableElement.id"
             >
               <icon :path="mdiTrashCan" size="15" />
             </button>
@@ -140,6 +140,8 @@ export default {
 
     const checkedRows = ref([])
 
+    const deleteId = ref('')
+
     const itemsPaginated = computed(() =>
       slice(
         items.value,
@@ -205,7 +207,8 @@ export default {
       checked,
       mdiEye,
       mdiTrashCan,
-      currentValue
+      currentValue,
+      deleteId
     }
   }
 }

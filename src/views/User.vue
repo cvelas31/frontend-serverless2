@@ -12,6 +12,7 @@
         :columnNames="columnNames"
         :tableElements="organizations"
         :columnNamesAttributes="columnNamesAttributes"
+        :resource="name.toLowerCase()"
       />
     </card-component>
   </main-section>

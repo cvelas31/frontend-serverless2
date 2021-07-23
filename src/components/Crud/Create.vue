@@ -1,23 +1,20 @@
 <template>
   <title-bar :title-stack="titleStack" />
   <hero-bar>
-    {{ UpperString(resource) }}
+    Crear {{name}}
     <template #right>
-      <router-link to="/" class="button light"> Dashboard </router-link>
+      <router-link to="/" class="button light">
+        Dashboard
+      </router-link>
     </template>
   </hero-bar>
   <main-section>
-    <card-component
-      :title="resource.toUpperCase() + ' ' + resourceId"
-      :icon="mdiBallot"
-    >
-      <SchemaForm :schema="schema">
-        <template #afterForm>
-          <BaseButton type="submit" class="button blue my-2"
-            >Edit</BaseButton
-          >
+    <card-component :title="'Crear ' + resorce" :icon="mdiBallot">
+  <SchemaForm :schema="schema" >
+            <template v-slot:afterForm>
+          <BaseButton type="submit" class="button green my-2">Submit</BaseButton>
         </template>
-      </SchemaForm>
+  </SchemaForm>
     </card-component>
   </main-section>
 </template>
@@ -26,7 +23,7 @@
 import { ref, markRaw } from 'vue'
 import { useSchemaForm, SchemaFormFactory } from 'formvuelate'
 import FormText from '@/components/Forms/FormText'
-import CreateOrganizacionParsed from '@/schemas/CreateOrganizacionParsed.json'
+// import CreateOrganizationParsed from '@/schemas/CreateOrganizationParsed.json'
 import BaseButton from '@/components/Forms/BaseButton'
 import { mdiBallot } from '@mdi/js'
 import MainSection from '@/components/MainSection'
@@ -51,21 +48,11 @@ export default {
   props: {
     resource: {
       type: String
-    },
-    resourceId: {
-      type: Number
     }
   },
-  setup() {
-    const schema = ref(CreateOrganizacionParsed)
-
-    const apiData = {
-      name: 'Farmaplast',
-      subdomain: 'farmaplast'
-    }
-
-    const formData = ref(apiData)
-    useSchemaForm(formData)
+  setup(props) {
+    const name = ref('Organization')
+    // asumo entra por props const schema = ref(CreateOrganizationParsed)
 
     const UpperString = string => {
       // string example -> String Example
@@ -77,14 +64,20 @@ export default {
       return str2
     }
 
+    const schema = ref(require(`@/schemas/Create${UpperString(props.resource)}Parsed.json`))
+    const formData = ref({})
+    useSchemaForm(formData)
+
     return {
       schema,
       mdiBallot,
-      UpperString
+      name
     }
   }
 }
+
 </script>
 
 <style>
+
 </style>

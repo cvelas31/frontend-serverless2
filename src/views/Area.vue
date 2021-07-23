@@ -3,7 +3,11 @@
   <hero-bar>
     {{ name.value }}
     <template #right>
-      <router-link to="/" class="button blue"> Create {{ name }} </router-link>
+      <router-link
+      :to="{name: 'admin-resource-create', params: {resource: name.toLowerCase()}}"
+      class="button blue">
+      Crear {{ name }}
+      </router-link>
     </template>
   </hero-bar>
   <main-section>
@@ -12,6 +16,7 @@
         :columnNames="columnNames"
         :tableElements="organizations"
         :columnNamesAttributes="columnNamesAttributes"
+        :resource="name.toLowerCase()"
       />
     </card-component>
   </main-section>
@@ -40,7 +45,7 @@ export default {
     CustomTable
   },
   setup() {
-    const name = ref('Areas')
+    const name = ref('Area')
     const titleStack = ref(['Admin', name.value])
     const columnNames = ref(['ID', 'Nombre'])
     const columnNamesAttributes = ref(['id', 'name'])

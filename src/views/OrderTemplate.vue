@@ -12,6 +12,7 @@
         :columnNames="columnNames"
         :tableElements="organizations"
         :columnNamesAttributes="columnNamesAttributes"
+        :resource="name.toLowerCase()"
       />
     </card-component>
   </main-section>
@@ -40,7 +41,7 @@ export default {
     CustomTable
   },
   setup() {
-    const name = ref('Organizations')
+    const name = ref('OrderTemplate')
     const titleStack = ref(['Admin', name.value])
     const columnNames = ref(['ID', 'Nombre', 'Subdomain'])
     const columnNamesAttributes = ref(['id', 'name', 'subdomain'])
