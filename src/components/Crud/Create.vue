@@ -1,7 +1,7 @@
 <template>
   <title-bar :title-stack="titleStack" />
   <hero-bar>
-    Crear {{name}}
+    Crear {{resource}}
     <template #right>
       <router-link to="/" class="button light">
         Dashboard
