@@ -1,5 +1,4 @@
 # How to do
-
 - Definir componentes (Inputs outputs)
 - Pensar que lo puede usar un celular
   - Llamarla y almacenarla localmente.
@@ -17,6 +16,9 @@
 - Headers
 - Warning with data handling with JavaScript.
 
+# Set up
+[ESLint + Prettier + Vue +  VSCode](https://technicallyfletch.com/how-to-setup-eslint-and-prettier-with-vscode-and-vuejs/)
+
 # Resources
 - **Subdomain on Vue**
   - https://medium.com/@apalshah/vue-js-how-to-handle-multiple-subdomains-on-a-single-app-cba9b1f916c4
@@ -27,7 +29,8 @@
 - **Form from Open Json Schema**
   - [Generate form using Json Schemas](https://vuejsfeed.com/blog/generate-forms-using-json-schema-and-vue-js)
   - [FormsSchema Generator](https://bestofvue.com/repo/formschema-native-vuejs-form-generator)
-
+- **Create form
+  - formvuelate
 
 - `npm config set ignore-scripts false`
 - `npm ext .js,.vue srcbin/eslint --fix . --e`

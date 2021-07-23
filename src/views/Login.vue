@@ -10,6 +10,7 @@
           <control :icon-left="mdiAccount">
             <input
               v-model="form.login"
+              ref="emailRef"
               class="input"
               type="text"
               name="login"
@@ -44,6 +45,7 @@
         <field grouped>
           <control>
             <button class="button blue" @click.prevent="login">Login</button>
+            <p v-if="failedLogin" > failed login </p>
           </control>
           <control>
             <router-link to="/" class="button"> Back </router-link>
@@ -55,7 +57,7 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import { useStore } from 'vuex'
 import { mdiAccount, mdiAsterisk, mdiLock } from '@mdi/js'
 import MainSection from '@/components/MainSection'
@@ -101,6 +103,9 @@ export default {
         .catch(e => {
           console.log(e)
           this.isLoading = false
+          this.form.pass = ''
+          this.failedLogin = true
+          setTimeout(() => { this.failedLogin = false }, 3000)
         })
       // TODO: Redirect to were it comes from
       this.$router.push('/')
@@ -117,12 +122,19 @@ export default {
       remember: ['remember']
     })
 
+    // ref oor reactive?
+    const failedLogin = ref(false)
+
     return {
       form,
       mdiAccount,
       mdiAsterisk,
-      mdiLock
+      mdiLock,
+      failedLogin
     }
+  },
+  mounted() {
+    this.$refs.emailRef.focus()
   },
   unmounted() {
     const store = useStore()

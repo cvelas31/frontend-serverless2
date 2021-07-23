@@ -9,7 +9,7 @@
         <slot />
       </section>
       <footer class="flex items-center flex-shrink-0 justify-start px-6 py-4 relative bg-gray-100 border-gray-200 border-t rounded-b">
-        <button class="button mr-2" @click="cancel">Cancel</button>
+        <button class="button mr-2" @click="cancel">Cancelar</button>
         <button class="button" :class="button" @click="confirm">{{ buttonLabel }}</button>
       </footer>
     </div>

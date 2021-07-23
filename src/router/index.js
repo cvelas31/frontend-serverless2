@@ -91,6 +91,15 @@ const routes = [
     path: '/admin/organization/create',
     name: 'admin-organization-create',
     component: () => import(/* webpackChunkName: "login" */ '../components/Crud/CreateOrganization')
+  },
+  {
+    meta: {
+      title: 'ViewResource'
+    },
+    path: '/admin/:resource/:resourceId',
+    name: 'admin-resource-view',
+    component: () => import(/* webpackChunkName: "login" */ '../components/Crud/View'),
+    props: true
   }
 ]
 
