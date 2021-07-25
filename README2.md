@@ -41,3 +41,19 @@
     - What are the available components? 
 2. In the front end, assume you receive parsed forms and
 make them match with formvuelate.
+
+# Pillars on Frontend
+- Minimize work and redundancy between back and front (Good to be redundante on using same source. Ex: using json schemas to define forms and basic validations in front and back)
+- Define everything through schemas (Forms and form validations)
+  - On the backend is through pydantic
+  - On the front is through formvuelate
+  - Both of them are really similar, but will need a little bit of help for transformations those transformations are going to be done in the Backend.
+  - Back must talk with front on what is the schema for the forms
+- Missing how to do the Tenant thing
+
+# User Flow:
+- **Login**
+  - Login (Already working)
+  - Bad Login (We only have a failed login)
+    - Be more Explicit
+- Create Register Page 

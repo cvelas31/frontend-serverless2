@@ -54,6 +54,14 @@ const routes = [
   },
   {
     meta: {
+      title: 'Register'
+    },
+    path: '/register',
+    name: 'register',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Register')
+  },
+  {
+    meta: {
       title: 'Organization'
     },
     path: '/admin/organization',

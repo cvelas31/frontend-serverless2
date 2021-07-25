@@ -6,7 +6,7 @@
   >
     <slot/>
     <control-icon v-if="iconLeft" :icon="iconLeft"/>
-    <control-icon v-if="iconRight" :icon="iconRight" is-right/>
+    <control-icon v-if="iconRight" :icon="iconRight" is-right @click.prevent="rightIconMethod"/>
   </component>
 </template>
 
@@ -33,6 +33,10 @@ export default {
     },
     iconRight: {
       type: String
+    },
+    rightIconMethod: {
+      type: Function,
+      default: () => {}
     }
   },
   setup(props) {
