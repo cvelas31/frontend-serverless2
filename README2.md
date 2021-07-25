@@ -48,7 +48,7 @@ make them match with formvuelate.
   - On the backend is through pydantic
   - On the front is through formvuelate
   - Both of them are really similar, but will need a little bit of help for transformations those transformations are going to be done in the Backend.
-  - Back must talk with front on what is the schema for the forms
+    - Back must talk with front on what is the schema for the forms
 - Missing how to do the Tenant thing
 
 # User Flow:
@@ -56,4 +56,11 @@ make them match with formvuelate.
   - Login (Already working)
   - Bad Login (We only have a failed login)
     - Be more Explicit
-- Create Register Page 
+- Create Register Page
+
+
+# Views
+
+## Login
+- Email
+- Password
