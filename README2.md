@@ -29,8 +29,11 @@
 - **Form from Open Json Schema**
   - [Generate form using Json Schemas](https://vuejsfeed.com/blog/generate-forms-using-json-schema-and-vue-js)
   - [FormsSchema Generator](https://bestofvue.com/repo/formschema-native-vuejs-form-generator)
-- **Create form
+- **Create form**
   - formvuelate
+- **Authetication**
+  - [Sample JWT witgh Vue3](https://www.bezkoder.com/vue-3-authentication-jwt/)
+    - Use Another package just for API services
 
 - `npm config set ignore-scripts false`
 - `npm ext .js,.vue srcbin/eslint --fix . --e`
@@ -46,8 +49,8 @@ make them match with formvuelate.
 # Pillars on Frontend
 - Minimize work and redundancy between back and front (Good to be redundante on using same source. Ex: using json schemas to define forms and basic validations in front and back)
 - Define everything through schemas (Forms and form validations)
-  - On the backend is through pydantic
-  - On the front is through formvuelate
+  - On the backend is through **pydantic**
+  - On the front is through **formvuelate**
   - Both of them are really similar, but will need a little bit of help for transformations those transformations are going to be done in the Backend.
     - Back must talk with front on what is the schema for the forms
 - Missing how to do the Tenant thing
