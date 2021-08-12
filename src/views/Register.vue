@@ -163,7 +163,9 @@ export default {
     }
   },
   mounted() {
+    const store = useStore()
     this.$refs.emailRef.focus()
+    store.dispatch('formScreenToggle', true)
   },
   unmounted() {
     const store = useStore()

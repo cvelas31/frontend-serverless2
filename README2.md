@@ -41,6 +41,7 @@
     - What are the available components? 
 2. In the front end, assume you receive parsed forms and
 make them match with formvuelate.
+3. How is the front going to send things to the back.
 
 # Pillars on Frontend
 - Minimize work and redundancy between back and front (Good to be redundante on using same source. Ex: using json schemas to define forms and basic validations in front and back)
@@ -57,7 +58,6 @@ make them match with formvuelate.
   - Bad Login (We only have a failed login)
     - Be more Explicit
 - Create Register Page
-
 
 # Views
 
