@@ -2,11 +2,22 @@
   <component
     :is="is"
     class="control"
-    :class="{'upload':upload, 'expanded':expanded, 'icons-left':iconLeft, 'icons-right':iconRight}"
+    :class="{
+      upload: upload,
+      expanded: expanded,
+      'icons-left': iconLeft,
+      'icons-right': iconRight,
+    }"
   >
-    <slot/>
-    <control-icon v-if="iconLeft" :icon="iconLeft"/>
-    <control-icon v-if="iconRight" :icon="iconRight" is-right @click.prevent="rightIconMethod"/>
+    <slot />
+    <control-icon v-if="iconLeft" :icon="iconLeft" />
+    <control-icon
+      v-if="iconRight"
+      :icon="iconRight"
+      :class="rightIconClass"
+      is-right
+      @click.prevent="rightIconMethod"
+    />
   </component>
 </template>
 
@@ -33,6 +44,10 @@ export default {
     },
     iconRight: {
       type: String
+    },
+    rightIconClass: {
+      type: String,
+      default: 'cursor-pointer'
     },
     rightIconMethod: {
       type: Function,

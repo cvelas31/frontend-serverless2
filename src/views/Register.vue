@@ -129,12 +129,10 @@ export default {
       this.$router.push('/')
     },
     switchVisibility() {
-      console.log('Changing visibility')
       this.passwordFieldType =
         this.passwordFieldType === 'password' ? 'text' : 'password'
     },
     switchVisibilityOriginal() {
-      console.log('Changing visibility')
       this.passwordFieldTypeOriginal =
         this.passwordFieldTypeOriginal === 'password' ? 'text' : 'password'
     }
@@ -169,7 +167,6 @@ export default {
   },
   unmounted() {
     const store = useStore()
-
     store.dispatch('formScreenToggle', false)
   }
 }
