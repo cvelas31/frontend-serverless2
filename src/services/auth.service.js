@@ -1,9 +1,11 @@
-import axios from '../plugins/axios'
+import axios from 'axios'
+
+const API_URL = 'http://localhost:8080/api/auth/'
 
 class AuthService {
   login(user) {
     return axios
-      .post('/login/access-token', {
+      .post(API_URL + 'signin', {
         username: user.username,
         password: user.password
       })

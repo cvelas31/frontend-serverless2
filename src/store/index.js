@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import { auth } from './auth.module.js'
 
 const store = createStore({
   state() {
@@ -58,6 +59,7 @@ const store = createStore({
     }
   },
   modules: {
+    auth
   }
 })
 
