@@ -1,19 +1,28 @@
-import axios from 'axios'
-
-const API_URL = 'http://localhost:8080/api/auth/'
+import axios from '../plugins/axios'
+import qs from 'qs'
+// const API_URL = 'http://localhost:8080/api/auth/'
 
 class AuthService {
   login(user) {
+    const headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      accept: 'application/json'
+    }
     return axios
-      .post(API_URL + 'signin', {
-        username: user.username,
-        password: user.password
-      })
+      .post(
+        '/login/access-token',
+        qs.stringify({
+          username: user.username, // user is email. Follow oauth2 format
+          password: user.password
+        }),
+        {
+          headers: headers
+        }
+      )
       .then(response => {
         if (response.data.accessToken) {
           localStorage.setItem('user', JSON.stringify(response.data))
         }
-
         return response.data
       })
   }
@@ -23,8 +32,7 @@ class AuthService {
   }
 
   register(user) {
-    return axios.post(API_URL + 'signup', {
-      username: user.username,
+    return axios.post('/signup', {
       email: user.email,
       password: user.password
     })
