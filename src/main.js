@@ -25,4 +25,7 @@ const app = createApp(App)
 
 app.component('FormText', FormText)
 
-app.use(store).use(router).mount('#app')
+app
+  .use(store)
+  .use(router)
+  .mount('#app')

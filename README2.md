@@ -22,6 +22,7 @@
 # Resources
 - **Subdomain on Vue**
   - https://medium.com/@apalshah/vue-js-how-to-handle-multiple-subdomains-on-a-single-app-cba9b1f916c4
+  - `window.location`
 - **Validate Forms**
   - [Vue3 Veevalidate](https://jasonwatmore.com/post/2020/10/01/vue-3-veevalidate-form-validation-example)
   - [Vue 3 Vuelidate](https://medium.com/js-dojo/learn-form-validation-in-vue-3-in-10-minutes-with-vuelidate-8929c5059e66)
@@ -62,7 +63,19 @@ make them match with formvuelate.
     - Be more Explicit
 - Create Register Page
 
-# Views
+# How to start a project
+- Create a view
+- Create components for the view
+- Group by common or particular view
+- Atomic Design
+- Only view, view and big components. Small components, small components of small components
+
+# VueX
+- State
+- Mutations
+  - 
+- Actions
+  - Acciones commit a traves de las mutaciones
 
 ## Login
 - Email
