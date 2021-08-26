@@ -1,11 +1,7 @@
 <template>
   <div class="justify-center">
     <main-section class="text-center justify-center">
-      <card-component
-        title="Login"
-        :icon="mdiLock"
-        class="w-11/12 md:w-5/12 shadow-2xl rounded-lg"
-      >
+      <card-component title="Login" :icon="mdiLock" class="w-11/12 md:w-5/12 shadow-2xl rounded-lg">
         <form method="get">
           <field label="Email" help="Ingrese su email" spaced>
             <control :icon-left="mdiAccount">
@@ -47,10 +43,10 @@
 
           <field grouped>
             <control>
-              <button class="button blue" @click.prevent="login">Login</button>
+              <button class="button blue" @click.prevent="handleLogin">Login</button>
             </control>
             <control>
-              <router-link to="/" class="button"> Atrás </router-link>
+              <router-link to="/" class="button">Atrás</router-link>
             </control>
           </field>
         </form>
@@ -58,9 +54,7 @@
           <router-link
             to="/register"
             class="no-underline hover:underline text-blue-600 text-sm"
-          >
-            Aun no estoy registrado. Registrarme
-          </router-link>
+          >Aun no estoy registrado. Registrarme</router-link>
         </div>
       </card-component>
     </main-section>
@@ -122,6 +116,30 @@ export default {
         })
       // TODO: Redirect to were it comes from
       this.$router.push('/')
+    },
+    handleLogin() {
+      console.log('handleLogin')
+      const user = {
+        username: this.form.login,
+        password: this.form.pass
+      }
+      console.log('user:')
+      console.log(user)
+      this.loading = true
+      this.$store.dispatch('auth/login', user).then(
+        () => {
+          this.$router.push('/')
+        },
+        error => {
+          this.loading = false
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+        }
+      )
     }
   },
   setup() {

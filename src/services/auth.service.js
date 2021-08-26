@@ -1,9 +1,12 @@
 import axios from '../plugins/axios'
 import qs from 'qs'
+// import formHeader from '../services/form-header'
 // const API_URL = 'http://localhost:8080/api/auth/'
 
 class AuthService {
   login(user) {
+    console.log('AuthService')
+    console.log(user)
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       accept: 'application/json'
@@ -12,7 +15,7 @@ class AuthService {
       .post(
         '/login/access-token',
         qs.stringify({
-          username: user.username, // user is email. Follow oauth2 format
+          username: user.username,
           password: user.password
         }),
         {
@@ -20,7 +23,7 @@ class AuthService {
         }
       )
       .then(response => {
-        if (response.data.accessToken) {
+        if (response.data.access_token) {
           localStorage.setItem('user', JSON.stringify(response.data))
         }
         return response.data
