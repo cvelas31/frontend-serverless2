@@ -33,8 +33,9 @@ export default {
   setup() {
     const store = useStore()
 
+    // eslint-disable-next-line
     const isAuthenticated = computed(function () {
-      return store.state.isLoggedIn
+      return store.state.auth.status.loggedIn
     })
 
     const menu = ref([

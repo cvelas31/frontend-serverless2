@@ -14,7 +14,7 @@
     "chart.js": "^3.3.2",
     "core-js": "^3.6.5",
     "dayjs": "^1.10.5",
-    "formvuelate": "^3.3.0",
+    "formvuelate": "^3.5.0",
     "install": "^0.13.0",
     "lodash": "^4.17.21",
     "npm": "^7.17.0",

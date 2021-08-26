@@ -1,7 +1,11 @@
 <template>
   <div class="justify-center">
     <main-section class="text-center justify-center">
-      <card-component title="Login" :icon="mdiLock" class="w-11/12 md:w-5/12 shadow-2xl rounded-lg">
+      <card-component
+        title="Login"
+        :icon="mdiLock"
+        class="w-11/12 md:w-5/12 shadow-2xl rounded-lg"
+      >
         <form method="get">
           <field label="Email" help="Ingrese su email" spaced>
             <control :icon-left="mdiAccount">
@@ -43,7 +47,9 @@
 
           <field grouped>
             <control>
-              <button class="button blue" @click.prevent="handleLogin">Login</button>
+              <button class="button blue" @click.prevent="handleLogin">
+                Login
+              </button>
             </control>
             <control>
               <router-link to="/" class="button">Atrás</router-link>
@@ -54,7 +60,8 @@
           <router-link
             to="/register"
             class="no-underline hover:underline text-blue-600 text-sm"
-          >Aun no estoy registrado. Registrarme</router-link>
+            >Aun no estoy registrado. Registrarme</router-link
+          >
         </div>
       </card-component>
     </main-section>
@@ -71,8 +78,6 @@ import CheckRadioPicker from '@/components/CheckRadioPicker'
 import Field from '@/components/Field'
 import Control from '@/components/Control'
 import Divider from '@/components/Divider.vue'
-import axios from '../plugins/axios'
-import qs from 'qs'
 
 export default {
   name: 'Login',
@@ -85,52 +90,17 @@ export default {
     Divider
   },
   methods: {
-    async login() {
-      this.isLoading = true
-      const data = {
-        username: this.form.login,
-        password: this.form.pass
-      }
-      const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        accept: 'application/json'
-      }
-      await axios
-        .post('/login/access-token', qs.stringify(data), {
-          headers: headers
-        })
-        .then(response => {
-          this.form.login = ''
-          this.form.pass = ''
-          this.isLoading = false
-          this.$store.commit('userLogged', response.data)
-        })
-        .catch(e => {
-          console.log(e)
-          this.isLoading = false
-          this.form.pass = ''
-          this.failedLogin = true
-          setTimeout(() => {
-            this.failedLogin = false
-          }, 3000)
-        })
-      // TODO: Redirect to were it comes from
-      this.$router.push('/')
-    },
     handleLogin() {
-      console.log('handleLogin')
       const user = {
         username: this.form.login,
         password: this.form.pass
       }
-      console.log('user:')
-      console.log(user)
       this.loading = true
       this.$store.dispatch('auth/login', user).then(
         () => {
           this.$router.push('/')
         },
-        error => {
+        (error) => {
           this.loading = false
           this.message =
             (error.response &&
