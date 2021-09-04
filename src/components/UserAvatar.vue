@@ -32,7 +32,7 @@ export default {
         return `https://avatars.dicebear.com/v2/human/${store.state.userName.replace(/[^a-z0-9]+/i, '')}.svg?options[mood][]=happy`
       }
 
-      return null
+      return 'https://fonts.gstatic.com/s/i/materialiconsoutlined/assignment_ind/v11/24px.svg'
     })
 
     return {

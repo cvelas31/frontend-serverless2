@@ -1,23 +1,32 @@
-import axios from 'axios'
+import axios from '../plugins/axios'
+import jwtDecode from 'jwt-decode'
 import authHeader from './auth-header'
-
-const API_URL = 'http://localhost:8080/api/test/'
 
 class UserService {
   getPublicContent() {
-    return axios.get(API_URL + 'all')
+    return axios.get('all')
   }
 
   getUserBoard() {
-    return axios.get(API_URL + 'user', { headers: authHeader() })
+    return axios.get('user', { headers: authHeader() })
   }
 
   getModeratorBoard() {
-    return axios.get(API_URL + 'mod', { headers: authHeader() })
+    return axios.get('mod', { headers: authHeader() })
   }
 
   getAdminBoard() {
-    return axios.get(API_URL + 'admin', { headers: authHeader() })
+    return axios.get('admin', { headers: authHeader() })
+  }
+
+  getUserInfo(userId) {
+    return axios.get('/users/' + String(userId), { headers: authHeader() })
+  }
+
+  decodeJWT() {
+    const user = JSON.parse(localStorage.getItem('user'))
+    const token = user.access_token
+    return jwtDecode(token)
   }
 }
 

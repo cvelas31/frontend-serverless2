@@ -117,7 +117,6 @@ export default {
           this.$store.commit('userLogged', response.data)
         })
         .catch(e => {
-          console.log(e)
           this.isLoading = false
           this.form.pass = ''
           this.failedLogin = true

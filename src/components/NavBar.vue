@@ -116,7 +116,7 @@ export default {
 
     const isAsideMobileExpanded = computed(() => store.state.isAsideMobileExpanded)
 
-    const userName = computed(() => store.state.userName)
+    const userName = computed(() => store.state.user.name)
 
     const menuToggleMobileIcon = computed(() => isAsideMobileExpanded.value ? mdiBackburger : mdiForwardburger)
 
@@ -150,6 +150,9 @@ export default {
       mdiHelpCircleOutline,
       mdiGithub
     }
+  },
+  mounted() {
+    this.$store.dispatch('user/getUserInfo')
   }
 }
 </script>

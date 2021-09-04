@@ -33,8 +33,7 @@ export default {
   setup() {
     const store = useStore()
 
-    // eslint-disable-next-line
-    const isAuthenticated = computed(function () {
+    const isAuthenticated = computed(function() {
       return store.state.auth.status.loggedIn
     })
 

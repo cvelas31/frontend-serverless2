@@ -5,8 +5,6 @@ import qs from 'qs'
 
 class AuthService {
   login(user) {
-    console.log('AuthService')
-    console.log(user)
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       accept: 'application/json'
@@ -15,7 +13,7 @@ class AuthService {
       .post(
         '/login/access-token',
         qs.stringify({
-          username: user.username,
+          username: user.username, // Email
           password: user.password
         }),
         {
@@ -23,7 +21,6 @@ class AuthService {
         }
       )
       .then(response => {
-        console.log(response)
         if (response.data.access_token) {
           localStorage.setItem('user', JSON.stringify(response.data))
         }
