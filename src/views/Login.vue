@@ -41,7 +41,7 @@
             spaced
           />
           <div v-if="failedLogin">
-            <p class="justify-center text-red-400 font-bold">Fallo el Login</p>
+            <p class="justify-center text-red-400">Fallo el Login. Usuario o contraseña incorrecta</p>
           </div>
           <divider />
 
@@ -96,13 +96,15 @@ export default {
         password: this.form.pass
       }
       this.loading = true
+      this.failedLogin = false
       this.$store.dispatch('auth/login', user).then(
         () => {
           this.$router.push('/')
         },
         (error) => {
+          this.failedLogin = true
           this.loading = false
-          this.message =
+          this.failedMessage =
             (error.response &&
               error.response.data &&
               error.response.data.message) ||
@@ -125,13 +127,15 @@ export default {
 
     // ref oor reactive?
     const failedLogin = ref(false)
+    const failedMessage = ref('')
 
     return {
       form,
       mdiAccount,
       mdiAsterisk,
       mdiLock,
-      failedLogin
+      failedLogin,
+      failedMessage
     }
   },
   mounted() {
