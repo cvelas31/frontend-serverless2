@@ -8,7 +8,7 @@ import './css/main.css'
 import FormText from './components/Forms/FormText'
 
 /* Default title tag */
-const defaultDocumentTitle = 'Admin One Vue 3 Tailwind'
+const defaultDocumentTitle = 'Agnostic Order Management'
 
 /* Collapse mobile aside menu on route change & set document title from route meta */
 router.afterEach(to => {

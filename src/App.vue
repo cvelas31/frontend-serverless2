@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import { ref, computed } from 'vue'
+import { ref, computed, onBeforeUpdate, onBeforeMount } from 'vue'
 import { useStore } from 'vuex'
 import {
   mdiDesktopMac,
@@ -32,6 +32,41 @@ export default {
   },
   setup() {
     const store = useStore()
+
+    onBeforeMount(() => {
+      // #############################################################
+      // https://stackoverflow.com/questions/45571729/how-to-setup-vuex-and-vue-router-to-redirect-when-a-store-value-is-not-set
+      // TODO: With the next we get the current subdomain and we can do the proper API calls
+      // Additionally it changes the BASE_URL of axios
+      // const host = window.location.host
+      // const parts = host.split('.')
+      // // Checkin current organization
+      // const domainLength = 3 // route1.example.com => domain length = 3 regular mode
+      // if ((parts.length === domainLength) & (parts[0] !== 'www')) {
+      //   const subdomain = parts[0]
+      //   store.dispatch('organization/getOrganizationInfoFromSubdomain', subdomain)
+      // } else if ((parts.length === domainLength - 1) & (parts[0] !== 'www')) {
+      //   // Get current subdomain and see if it exists
+      //   const subdomain = parts[0]
+      //   store.dispatch('organization/getOrganizationInfoFromSubdomain', subdomain)
+      // } else {
+      //   // We are at parent subdomain
+      //   const subdomain = ''
+      //   store.dispatch('organization/getOrganizationInfoFromSubdomain', subdomain)
+      // }
+      // #############################################################
+      console.log(store.state.organization)
+      console.log(store.state.organization.id)
+      console.log('onBeforeMount')
+      // this.$router.push('/')
+    })
+
+    onBeforeUpdate(() => {
+      console.log(store.state.organization)
+      console.log(store.state.organization.id)
+      console.log('onBeforeUpdate')
+      // this.$router.push('/')
+    })
 
     const isAuthenticated = computed(function() {
       return store.state.auth.status.loggedIn

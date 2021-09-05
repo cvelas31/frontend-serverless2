@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import { auth } from './auth.module.js'
 import { user } from './user.module.js'
+import { organization } from './org.module.js'
 
 const store = createStore({
   state() {
@@ -14,8 +15,8 @@ const store = createStore({
       userName: null,
       userEmail: null,
       userAvatar: null,
-      organization_id: null,
-      organization_name: null,
+      organizationId: null,
+      organizationName: null,
 
       /* FormScreen - fullscreen form layout (e.g. login page) */
       isFormScreen: false,
@@ -61,7 +62,8 @@ const store = createStore({
   },
   modules: {
     auth,
-    user
+    user,
+    organization
   }
 })
 

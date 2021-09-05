@@ -42,7 +42,8 @@ const routes = [
     },
     path: '/profile',
     name: 'profile',
-    component: () => import(/* webpackChunkName: "profile" */ '../views/Profile')
+    component: () =>
+      import(/* webpackChunkName: "profile" */ '../views/Profile')
   },
   {
     meta: {
@@ -62,15 +63,18 @@ const routes = [
   },
   {
     meta: {
-      title: 'Organization'
+      title: 'Organization',
+      middleware: 'auth'
     },
     path: '/admin/organization',
     name: 'admin-organization',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Organization')
+    component: () =>
+      import(/* webpackChunkName: "login" */ '../views/Organization')
   },
   {
     meta: {
-      title: 'Area'
+      title: 'Area',
+      middleware: 'auth'
     },
     path: '/admin/area',
     name: 'admin-area',
@@ -78,7 +82,8 @@ const routes = [
   },
   {
     meta: {
-      title: 'User'
+      title: 'User',
+      middleware: 'auth'
     },
     path: '/admin/user',
     name: 'admin-user',
@@ -86,36 +91,56 @@ const routes = [
   },
   {
     meta: {
-      title: 'OrderTemplate'
+      title: 'OrderTemplate',
+      middleware: 'auth'
     },
     path: '/admin/order_template',
     name: 'admin-order-template',
-    component: () => import(/* webpackChunkName: "login" */ '../views/OrderTemplate')
+    component: () =>
+      import(/* webpackChunkName: "login" */ '../views/OrderTemplate')
   },
   {
     meta: {
-      title: 'CrearOrganizacion'
+      title: 'CrearOrganizacion',
+      middleware: 'auth'
     },
     path: '/admin/organization/create',
     name: 'admin-organization-create',
-    component: () => import(/* webpackChunkName: "login" */ '../components/Crud/CreateOrganization')
+    component: () =>
+      import(
+        /* webpackChunkName: "login" */ '../components/Crud/CreateOrganization'
+      )
   },
   {
     meta: {
-      title: 'ViewResource'
+      title: 'ViewResource',
+      middleware: 'auth'
     },
     path: '/admin/:resource/:resourceId',
     name: 'admin-resource-view',
-    component: () => import(/* webpackChunkName: "login" */ '../components/Crud/View'),
+    component: () =>
+      import(/* webpackChunkName: "login" */ '../components/Crud/View'),
     props: true
   },
   {
     meta: {
-      title: 'CreateResource'
+      title: 'CreateResource',
+      middleware: 'auth'
     },
     path: '/admin/:resource/create',
     name: 'admin-resource-create',
-    component: () => import(/* webpackChunkName: "login" */ '../components/Crud/Create'),
+    component: () =>
+      import(/* webpackChunkName: "login" */ '../components/Crud/Create'),
+    props: true
+  },
+  {
+    meta: {
+      title: 'NotFound'
+    },
+    path: '/notfound',
+    name: 'notfound',
+    component: () =>
+      import(/* webpackChunkName: "login" */ '../views/NotFound'),
     props: true
   }
 ]

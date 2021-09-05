@@ -1,11 +1,7 @@
 <template>
   <div class="justify-center">
     <main-section class="text-center justify-center">
-      <card-component
-        title="Login"
-        :icon="mdiLock"
-        class="w-11/12 md:w-5/12 shadow-2xl rounded-lg"
-      >
+      <card-component title="Login" :icon="mdiLock" class="w-11/12 md:w-5/12 shadow-2xl rounded-lg">
         <form method="get">
           <field label="Email" help="Ingrese su email" spaced>
             <control :icon-left="mdiAccount">
@@ -47,9 +43,7 @@
 
           <field grouped>
             <control>
-              <button class="button blue" @click.prevent="handleLogin">
-                Login
-              </button>
+              <button class="button blue" @click.prevent="handleLogin">Login</button>
             </control>
             <control>
               <router-link to="/" class="button">Atrás</router-link>
@@ -60,8 +54,7 @@
           <router-link
             to="/register"
             class="no-underline hover:underline text-blue-600 text-sm"
-            >Aun no estoy registrado. Registrarme</router-link
-          >
+          >Aun no estoy registrado. Registrarme</router-link>
         </div>
       </card-component>
     </main-section>
@@ -101,7 +94,7 @@ export default {
         () => {
           this.$router.push('/')
         },
-        (error) => {
+        error => {
           this.failedLogin = true
           this.loading = false
           this.failedMessage =
