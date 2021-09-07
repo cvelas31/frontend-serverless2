@@ -1,8 +1,10 @@
 # Useful Information
+
 - Now the `vue-cli-service serve --host 127.0.0.1` Host edited to allow subdomain on local host
   - https://stackoverflow.com/questions/54062866/vue-subdomain-in-development-production
 
 # How to do
+
 - Definir componentes (Inputs outputs)
 - Pensar que lo puede usar un celular
   - Llamarla y almacenarla localmente.
@@ -13,6 +15,7 @@
 - Ponerlo en las vistas
   - Carga data y e la psa a componentes
 - Figma: Es bueno
+
   - Separar cosas por componentes (Sirve para segmentar)
   - Se aprende easy
 
@@ -21,9 +24,11 @@
 - Warning with data handling with JavaScript.
 
 # Set up
-[ESLint + Prettier + Vue +  VSCode](https://technicallyfletch.com/how-to-setup-eslint-and-prettier-with-vscode-and-vuejs/)
+
+[ESLint + Prettier + Vue + VSCode](https://technicallyfletch.com/how-to-setup-eslint-and-prettier-with-vscode-and-vuejs/)
 
 # Resources
+
 - **Subdomain on Vue**
   - https://medium.com/@apalshah/vue-js-how-to-handle-multiple-subdomains-on-a-single-app-cba9b1f916c4
   - `window.location`
@@ -37,21 +42,27 @@
 - **Create form**
   - formvuelate
 - **Authetication**
+
   - [Sample JWT witgh Vue3](https://www.bezkoder.com/vue-3-authentication-jwt/)
     - Use Another package just for API services
 
 - `npm config set ignore-scripts false`
 - `npm ext .js,.vue srcbin/eslint --fix . --e`
 
-## TODOs:
+# TODOs:
+**Request Error**
+
+- Do not show the API route when an error
+
 1. Create parser of jsons from pydantic to formulate.
-    - How to define which component to use for a field
-    - What are the available components? 
+   - How to define which component to use for a field
+   - What are the available components?
 2. In the front end, assume you receive parsed forms and
-make them match with formvuelate.
+   make them match with formvuelate.
 3. How is the front going to send things to the back.
 
 # Pillars on Frontend
+
 - Minimize work and redundancy between back and front (Good to be redundante on using same source. Ex: using json schemas to define forms and basic validations in front and back)
 - Define everything through schemas (Forms and form validations)
   - On the backend is through **pydantic**
@@ -59,28 +70,3 @@ make them match with formvuelate.
   - Both of them are really similar, but will need a little bit of help for transformations those transformations are going to be done in the Backend.
     - Back must talk with front on what is the schema for the forms
 - Missing how to do the Tenant thing
-
-# User Flow:
-- **Login**
-  - Login (Already working)
-  - Bad Login (We only have a failed login)
-    - Be more Explicit
-- Create Register Page
-
-# How to start a project
-- Create a view
-- Create components for the view
-- Group by common or particular view
-- Atomic Design
-- Only view, view and big components. Small components, small components of small components
-
-# VueX
-- State
-- Mutations
-  - 
-- Actions
-  - Acciones commit a traves de las mutaciones
-
-## Login
-- Email
-- Password

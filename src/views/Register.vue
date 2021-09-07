@@ -9,6 +9,7 @@
         <field label="Email" help="Ingrese su email" spaced>
           <control :icon-left="mdiAccount">
             <input
+              v-on:blur="validateEmail"
               v-model="form.login"
               ref="emailRef"
               class="input"
@@ -21,7 +22,11 @@
         </field>
 
         <field label="Contraseña" help="Ingrese su contraseña" spaced>
-          <control :icon-left="mdiAsterisk" :icon-right="mdiEye" :rightIconMethod="switchVisibilityOriginal">
+          <control
+            :icon-left="mdiAsterisk"
+            :icon-right="mdiEye"
+            :rightIconMethod="switchVisibilityOriginal"
+          >
             <input
               v-model="form.pass"
               class="input"
@@ -38,8 +43,13 @@
           help="Confirme su contraseña"
           spaced
         >
-          <control :icon-left="mdiAsterisk" :icon-right="mdiEye" :rightIconMethod="switchVisibility">
+          <control
+            :icon-left="mdiAsterisk"
+            :icon-right="mdiEye"
+            :rightIconMethod="switchVisibility"
+          >
             <input
+              v-on:blur="validate"
               v-model="form.pass2"
               onpaste="return false;"
               class="input"
@@ -50,12 +60,20 @@
             />
           </control>
         </field>
+        <div v-if="showError">
+          <p class="justify-center text-red-400">
+            Las contraseñas no son iguales
+          </p>
+        </div>
+        <div v-if="showEmailError">
+          <p class="justify-center text-red-400">No es un correo valido</p>
+        </div>
 
         <divider />
 
         <field grouped>
           <control>
-            <button class="button blue" @click.prevent="login">
+            <button class="button blue" @click.prevent="handleRegister">
               Registrarme
             </button>
           </control>
@@ -77,8 +95,6 @@ import CardComponent from '@/components/CardComponent'
 import Field from '@/components/Field'
 import Control from '@/components/Control'
 import Divider from '@/components/Divider.vue'
-import axios from '../plugins/axios'
-import qs from 'qs'
 
 export default {
   name: 'Register',
@@ -96,37 +112,54 @@ export default {
     }
   },
   methods: {
-    async login() {
-      this.isLoading = true
-      const data = {
+    handleRegister() {
+      console.log(this.$store)
+      const user = {
         username: this.form.login,
-        password: this.form.pass
+        password: this.form.pass,
+        organization_id: this.$store.state.organization.id
       }
-      const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        accept: 'application/json'
+      console.log(user)
+      if (this.showEmailError) {
+        alert('No es un correo valido')
+      } else if (this.passwordsDoNotMatch) {
+        alert('Las contraseñas no son iguales')
+      } else {
+        this.loading = true
+        this.$store.dispatch('auth/register', user).then(
+          () => {
+            this.$router.push('/login')
+          },
+          (error) => {
+            this.loading = false
+            this.failedMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString()
+          }
+        )
       }
-      await axios
-        .post('/login/access-token', qs.stringify(data), {
-          headers: headers
-        })
-        .then(response => {
-          this.form.login = ''
-          this.form.pass = ''
-          this.isLoading = false
-          this.$store.commit('userLogged', response.data)
-        })
-        .catch(e => {
-          this.isLoading = false
-          this.form.pass = ''
-          this.failedLogin = true
-          setTimeout(() => {
-            this.failedLogin = false
-          }, 3000)
-        })
-      // TODO: Redirect to were it comes from
-      this.$router.push('/')
     },
+    // eslint-disable-next-line
+    validate: function () {
+      this.showError = true
+      this.passwordsDoNotMatch = true
+      if (this.form.pass === this.form.pass2) {
+        this.passwordsDoNotMatch = false
+        this.showError = false
+      }
+    },
+    // eslint-disable-next-line
+    validateEmail: function () {
+      const re = /\S+@\S+\.\S+/
+      this.showEmailError = true
+      if (re.test(this.form.login)) {
+        this.showEmailError = false
+      }
+    },
+
     switchVisibility() {
       this.passwordFieldType =
         this.passwordFieldType === 'password' ? 'text' : 'password'
@@ -146,9 +179,18 @@ export default {
       pass: '',
       pass2: ''
     })
-
     // ref oor reactive?
-    const failedLogin = ref(false)
+    const passwordsDoNotMatch = ref(true)
+    const showError = ref(false)
+    const showEmailError = ref(false)
+
+    // eslint-disable-next-line
+    // const doPasswordsMatch = computed(function () {
+    //   if (form.pass !== '' && !form.pass === form.pass2) {
+    //     passwordsDoNotMatch = true
+    //   }
+    //   passwordsDoNotMatch = false
+    // })
 
     return {
       form,
@@ -156,7 +198,10 @@ export default {
       mdiAsterisk,
       mdiLock,
       mdiEye,
-      failedLogin
+      passwordsDoNotMatch,
+      showError,
+      showEmailError
+      // doPasswordsMatch
     }
   },
   mounted() {

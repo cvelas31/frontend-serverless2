@@ -3,6 +3,6 @@
   "useTabs": false,
   "semi": false,
   "singleQuote": true,
-  "trailingComma" : "none"
-
+  "trailingComma" : "none",
+  "spaceBeforeFunctionParen": "false"
 }

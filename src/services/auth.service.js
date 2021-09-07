@@ -33,9 +33,10 @@ class AuthService {
   }
 
   register(user) {
-    return axios.post('/signup', {
-      email: user.email,
-      password: user.password
+    return axios.post('/users/register/', {
+      email: user.username,
+      password: user.password,
+      organization_id: user.organization_id
     })
   }
 }
