@@ -1,5 +1,6 @@
 # Useful Information
 - Now the `vue-cli-service serve --host 127.0.0.1` Host edited to allow subdomain on local host
+  - https://stackoverflow.com/questions/54062866/vue-subdomain-in-development-production
 
 # How to do
 - Definir componentes (Inputs outputs)
