@@ -2,12 +2,16 @@
   <div class="justify-center">
     <main-section class="text-center justify-center">
       <card-component
-        title="Login"
+        title="Recuperar contraseña"
         :icon="mdiLock"
         class="w-11/12 md:w-5/12 shadow-2xl rounded-lg"
       >
         <form method="get">
-          <field label="Email" help="Ingrese su email" spaced>
+          <field
+            label="Email"
+            help="Ingrese el email para recibir el correo de recuperación"
+            spaced
+          >
             <control :icon-left="mdiAccount">
               <input
                 v-model="form.login"
@@ -21,48 +25,16 @@
             </control>
           </field>
 
-          <field label="Contraseña" help="Ingrese su contraseña" spaced>
-            <control :icon-left="mdiAsterisk">
-              <input
-                v-model="form.pass"
-                class="input"
-                type="password"
-                name="password"
-                placeholder="Password"
-                autocomplete="current-password"
-              />
-            </control>
-          </field>
-
-          <div>
-            <router-link
-              to="/forgot-password"
-              class="no-underline hover:underline text-blue-600 text-sm"
-              >Olvide mi contraseña</router-link
-            >
-          </div>
-
-          <check-radio-picker
-            name="remember"
-            v-model="form.remember"
-            :options="{ remember: 'Recordarme' }"
-            spaced
-          />
-          <div v-if="failedLogin">
-            <p class="justify-center text-red-400">
-              Fallo el Login. Usuario o contraseña incorrecta
-            </p>
-          </div>
           <divider />
 
           <field grouped>
             <control>
               <button class="button blue" @click.prevent="handleLogin">
-                Login
+                Enviar Correo
               </button>
             </control>
             <control>
-              <router-link to="/" class="button">Atrás</router-link>
+              <router-link to="/login" class="button">Atrás</router-link>
             </control>
           </field>
         </form>
@@ -84,7 +56,6 @@ import { useStore } from 'vuex'
 import { mdiAccount, mdiAsterisk, mdiLock } from '@mdi/js'
 import MainSection from '@/components/MainSection'
 import CardComponent from '@/components/CardComponent'
-import CheckRadioPicker from '@/components/CheckRadioPicker'
 import Field from '@/components/Field'
 import Control from '@/components/Control'
 import Divider from '@/components/Divider.vue'
@@ -94,7 +65,6 @@ export default {
   components: {
     MainSection,
     CardComponent,
-    CheckRadioPicker,
     Field,
     Control,
     Divider

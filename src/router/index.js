@@ -55,6 +55,15 @@ const routes = [
   },
   {
     meta: {
+      title: 'Forgot Password'
+    },
+    path: '/forgot-password',
+    name: 'forgot-password',
+    component: () =>
+      import(/* webpackChunkName: "ForgotPassword" */ '../views/ForgotPassword')
+  },
+  {
+    meta: {
       title: 'Register'
     },
     path: '/register',
