@@ -2,8 +2,8 @@ import AuthService from '../services/auth.service'
 
 const user = JSON.parse(localStorage.getItem('user'))
 const initialState = user
-  ? { status: { loggedIn: true }, user }
-  : { status: { loggedIn: false }, user: null }
+  ? { status: { loggedIn: true }, user, emailSent: null }
+  : { status: { loggedIn: false }, user: null, emailSent: null }
 
 export const auth = {
   namespaced: true,
@@ -36,6 +36,18 @@ export const auth = {
           return Promise.reject(error)
         }
       )
+    },
+    resetPassword({ commit }, email) {
+      return AuthService.resetPassword(email).then(
+        response => {
+          commit('emailSentSuccess')
+          return Promise.resolve(response.data)
+        },
+        error => {
+          commit('emailSentFailure')
+          return Promise.reject(error)
+        }
+      )
     }
   },
   mutations: {
@@ -56,6 +68,12 @@ export const auth = {
     },
     registerFailure(state) {
       state.status.loggedIn = false
+    },
+    emailSentSuccess(state) {
+      state.emailSent = true
+    },
+    emailSentFailure(state) {
+      state.emailSent = false
     }
   }
 }

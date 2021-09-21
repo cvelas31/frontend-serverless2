@@ -39,6 +39,10 @@ class AuthService {
       organization_id: user.organization_id
     })
   }
+
+  resetPassword(email) {
+    return axios.post(`/password-recovery/${email}`)
+  }
 }
 
 export default new AuthService()

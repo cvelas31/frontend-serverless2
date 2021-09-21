@@ -1,7 +1,7 @@
 .button {
-  @apply inline-flex bg-white text-black border-gray-50 border cursor-pointer justify-center items-center px-4 py-2 text-center
+  @apply inline-flex bg-white text-black border-gray-300 border justify-center items-center px-4 py-2 text-center
     whitespace-nowrap rounded
-    hover:border-gray-500
+    hover:border-gray-600
     focus:outline-none;
 }
 
